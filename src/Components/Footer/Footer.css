@@ -1,0 +1,28 @@
+footer{
+    background: var(--bg-white);
+}
+footer ul li a{
+    color: var(--color-navblue);
+    color: var(--color-black-light);
+    margin-bottom: 0.5rem;
+    display: block;
+    transition: var(--transition-3);
+}
+footer ul li a:hover{
+    color: var(--color-navblue);
+    text-decoration: underline;
+    padding-left: 0.5rem;
+}
+
+footer h5{
+    color: var(--color-navblue);
+}
+
+footer .copyright{
+    border-top: 1px solid var(--color-navblue);
+    padding-top: 1rem;
+}
+footer .copyright a{
+    color: var(--color-navblue);
+    text-decoration: underline !important;
+}

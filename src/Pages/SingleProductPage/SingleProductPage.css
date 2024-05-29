@@ -1,0 +1,135 @@
+
+.product-page .main-slider img{
+    max-height: 350px;
+    object-fit: contain;
+    border: 1px solid var(--color-grey);
+}
+.product-page .sm-images img{
+    height: 8rem;
+    object-fit: contain;
+}
+
+.product-page .content h1{
+    font-size: 2rem;
+    color: var(--color-navblue);
+    color: #2e3f97;
+    max-width: 90%;
+}
+.product-page .content .category{
+    padding: 2px 5px;
+    border-radius: 5px;
+    background: var(--color-orange);
+    color: white;
+}
+.product-page .content .prices{
+    align-items: baseline;
+}
+.product-page .content .prices h2{
+    color: red;
+    color: var(--color-navblue);
+}
+.product-page .content del{
+    text-decoration: line-through;
+    color: red;
+}
+.product-page .content .off{
+    margin-left: 0.5rem;
+    /* color: var(--color-navblue); */
+}
+
+.product-page ol li{
+    list-style-type: disc;
+}
+.add-to-cart-btn{
+    border: 1px solid var(--color-navblue);
+    padding: 0.5rem 1rem;
+    background: var(--color-navblue);
+    color: white;
+    font-weight: 500;
+    text-transform: uppercase;
+    transition: var(--transiton-3);
+}
+.product-page .btns{
+    align-items: center;
+    margin-bottom: 1rem;
+}
+.product-page .quantity-control{
+    border: 1px solid var(--color-navblue);
+    background: var(--color-navblue);
+}
+.product-page .quantity-control button{
+    padding: 0.2rem 1rem;
+    border: none;
+    outline: none;
+    background: var(--color-navblue);
+    color: white;
+    font-size: 1.3rem;
+}
+
+
+/* ------------------  */
+
+
+
+
+.popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    padding: 1rem ;
+    border-radius: 8px;
+    z-index: 9999;
+    display: none;
+}
+
+.popup.show {
+    display: block;
+    animation: fadeIn 0.5s ease forwards, fadeOut 0.5s ease 2s forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+
+
+@media only screen and (max-width: 768px){
+    .product-page .content h1 {
+        font-size: 1.6rem;
+        color: var(--color-navblue);
+        color: #2e3f97;
+        max-width: 100%;
+    }
+    .product-page .content p{
+        text-align: justify;
+    }
+}
+
+@media only screen and (max-width: 450px){
+    .product-page .main-slider img {
+        height: 250px;
+        object-fit: contain;
+        border: 1px solid var(--color-grey);
+    }
+    .product-page .sm-images img {
+        height: 6rem;
+        object-fit: contain;
+    }
+}

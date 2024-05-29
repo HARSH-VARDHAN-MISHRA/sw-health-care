@@ -1,0 +1,11 @@
+.about h1 span{
+    color: var(--color-main);
+    font-style: italic;
+}
+.about h1{
+    color: var(--color-navblue);
+}
+.about p strong{
+    font-weight: 500;
+    color: var(--color-navblue);
+}
