@@ -51,8 +51,9 @@
         grid-template-columns: repeat(2,1fr);
         gap: 0.5rem;
     }
-    .single-cate img{
-        max-height: 12rem;
+    .single-cate img {
+        max-height: 10rem;
+        width: 10rem;
         height: 100%;
     }
 }
