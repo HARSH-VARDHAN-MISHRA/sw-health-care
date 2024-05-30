@@ -46,7 +46,7 @@ const HomePage = () => {
                 </div>
             </section>
 
-            {/* <About/> */}
+            <About/>
 
             <SubHead title="Our Categories" />
             <AllCategory/>
