@@ -4,6 +4,8 @@ import SubHead from '../../Components/SubHead/SubHead'
 import MostSelling from '../../Components/MostSelling/MostSelling'
 import About from '../../Components/About/About'
 import Contact from '../../Components/Contact/Contact'
+import bn1 from './banner1.jpg'
+import bn2 from './banner2.jpg'
 
 const HomePage = () => {
     useEffect(() => {
@@ -24,13 +26,13 @@ const HomePage = () => {
                     </div>
                     <div class="carousel-inner">
                         <div class="carousel-item active">
-                            <img src="https://drtrust.in/cdn/shop/files/Kids_BP_Monitorc_1915x549.png?v=1707912215" class="d-block w-100" alt="..." />
+                            <img src={bn1} class="d-block w-100" alt="..." />
                         </div>
                         <div class="carousel-item">
-                            <img src="https://drtrust.in/cdn/shop/files/Kids_BP_Monitorc_1915x549.png?v=1707912215" class="d-block w-100" alt="..." />
+                            <img src={bn2} class="d-block w-100" alt="..." />
                         </div>
                         <div class="carousel-item">
-                            <img src="https://drtrust.in/cdn/shop/files/Kids_BP_Monitorc_1915x549.png?v=1707912215" class="d-block w-100" alt="..." />
+                            <img src={bn1} class="d-block w-100" alt="..." />
                         </div>
                     </div>
                     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
