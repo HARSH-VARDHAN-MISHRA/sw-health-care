@@ -10,6 +10,7 @@ import SingleProductPage from './Pages/SingleProductPage/SingleProductPage';
 import Login from './Components/Login/Login';
 import SignIn from './Components/Login/SignIn';
 import ForgetPassword from './Components/Login/ForgetPassword';
+import ProfilePage from './Pages/ProfilePage/ProfilePage';
 
 function App() {
   return (
@@ -27,6 +28,10 @@ function App() {
           <Route path='/login' element={<Login />} />
           <Route path='/sign-up' element={<SignIn/>} />
           <Route path='/login/forget-password' element={<ForgetPassword />} />
+
+          {/* -- User Pages  ---  */}
+          <Route path='/profile' element={<ProfilePage/>} />
+
         </Routes>
 
         <Footer/>
