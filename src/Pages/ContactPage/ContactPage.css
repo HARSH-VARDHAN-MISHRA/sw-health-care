@@ -1,0 +1,12 @@
+.contact h2 {
+    color: var(--color-navblue);
+}
+
+.contact .form-control:focus {
+    border-color: var(--color-navblue);
+    box-shadow: none;
+}
+.contact button[type="submit"]{
+    background: var(--color-navblue);
+    border-color: var(--color-navblue);
+}

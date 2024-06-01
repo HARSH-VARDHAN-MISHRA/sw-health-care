@@ -12,6 +12,7 @@ import SignIn from './Components/Login/SignIn';
 import ForgetPassword from './Components/Login/ForgetPassword';
 import ProfilePage from './Pages/ProfilePage/ProfilePage';
 import CartPage from './Pages/CartPage/CartPage';
+import ContactPage from './Pages/ContactPage/ContactPage';
 
 function App() {
   return (
@@ -26,6 +27,9 @@ function App() {
           <Route path='/category/products/product' element={<SingleProductPage/>} />
           <Route path='/cart' element={<CartPage/>} />
           {/* <Route path='/cart/checkout' element={<FinalCart/>} /> */}
+
+          {/* Pages ---  */}
+          <Route path='/contact' element={<ContactPage/>} />
 
           {/* ------- Authentication ---------  */}
           <Route path='/login' element={<Login />} />
