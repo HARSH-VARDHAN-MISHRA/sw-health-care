@@ -70,7 +70,7 @@
   @media (max-width:799px) {
     .payment_1 {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(1, 1fr);
       gap: 1rem;
       text-align: center;
       line-height: 1.5rem;
@@ -85,4 +85,7 @@
     .payment_2 p {
       font-size: 0.8rem;
     }
+    .payment {
+      margin: 15px 10px;
+  }
   }
