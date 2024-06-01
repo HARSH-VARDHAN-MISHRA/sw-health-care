@@ -83,7 +83,7 @@ const AllCategoryPage = () => {
 
                     {allcategory && allcategory.map((category, index) => (
                         // <Link to={`category/${category.catName}`} className="single-cate" key={index}>
-                        <Link to={`category/products`} className="single-cate" key={index}>
+                        <Link to={`/category/products`} className="single-cate" key={index}>
                             <img src={category.catImg} alt={category.catName} />
                             <h3>{category.catName}</h3>
                         </Link>

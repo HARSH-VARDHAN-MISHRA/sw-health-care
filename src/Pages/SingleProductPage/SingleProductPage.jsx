@@ -123,8 +123,9 @@ const SingleProductPage = () => {
 
     const [nav1, setNav1] = useState(null);
     const [nav2, setNav2] = useState(null);
+    const [showPopup, setShowPopup] = useState(false);
+
     const [quantity, setQuantity] = useState(1);
-    const [showModal, setShowModal] = useState(false);
     let sliderRef1 = useRef(null);
     let sliderRef2 = useRef(null);
 
@@ -144,15 +145,12 @@ const SingleProductPage = () => {
     };
 
     const addToCart = () => {
-        setShowModal(true);
-        setTimeout(() => {
-            setShowModal(false);
-        }, 2000);
+        setShowPopup(true);
+    };
+    const handleClosePopup = () => {
+        setShowPopup(false);
     };
 
-    const closeModal = () => {
-        setShowModal(false);
-    };
 
     useEffect(() => {
         window.scrollTo({
@@ -227,6 +225,40 @@ const SingleProductPage = () => {
 
                             </div>
 
+
+                            {showPopup && (
+                                <div className="popup">
+                                    <button className="closePopup" onClick={handleClosePopup}>×</button>
+                                    <div className="row">
+                                        <div className="col-12">
+                                            <div className='green text-center mb-2'> <i class="fa-regular fa-circle-check"></i> Added to cart successfully!</div>
+                                        </div>
+                                        <div className="col-md-6">
+                                            <div className="left text-center">
+                                                
+                                                <img src={SingleProduct[0].productImages[0]} alt="Product Image" />
+                                                <p>{SingleProduct[0].productName}</p>
+                                                <p>QTY: {quantity}</p>
+                                                
+                                            </div>
+                                        </div>
+                                        
+                                        <div className="col-md-6">
+                                            <div className="right">
+                                                <p>There are {quantity} items in your cart</p>
+                                                <p className='total'>TOTAL: Rs. 5,993.00</p>
+                                                <div className="buttons">
+                                                    <Link to="/category/products" className="continueShopping">Continue shopping</Link>
+                                                    <Link to="/cart" className="viewCart">View cart</Link>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            )}
+
                             <p>{SingleProduct[0].desc}</p>
                             <ol>
                                 {SingleProduct[0].points.map((point, index) => (
@@ -237,10 +269,6 @@ const SingleProductPage = () => {
                     </div>
                 </div>
             </section>
-
-            <div className={`text-center popup ${showModal ? 'show' : ''}`}>
-                {SingleProduct[0].productName} <br /> added to cart!
-            </div>
 
 
             <SubHead title="Related Products" />

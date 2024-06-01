@@ -1,0 +1,233 @@
+.head-ban select{
+    outline: none;
+    border: 1px solid var(--color-navblue);
+    background: var(--color-navblue);
+    color: white;
+    padding: 1px 0.5rem;
+    border-radius: 5px;
+}
+.head-ban.flex{
+    flex-wrap: wrap;
+}
+
+
+.products .accordion-button {
+    align-items: start;
+    padding: 1rem 0.5rem;
+}
+.products .accordion {
+    background-color: none;
+}
+.products .accordion-item {
+    border: none;
+}
+.products .accordion-button {
+    color: var(--color-navblue);
+    font-weight: 500;
+    font-size: 1.2rem;
+    border-bottom: 1px solid var(--color-grey-text);
+}
+.products .accordion-body {
+    padding: 1rem 0.3rem;
+}
+.products .accordion-button:not(.collapsed) {
+    color: var(--color-navblue);
+    background-color: white;
+    box-shadow: none;
+}
+
+.products ul{
+    padding-left: 0rem;
+}
+.products ul a{
+    color: var(--color-black-light);
+    display: block;
+    padding-bottom: 0.7rem;
+}
+.products ul a:hover{
+    color: var(--color-navblue);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.loader {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.spinner {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    border: 3px solid rgba(0, 0, 0, 0.1);
+    border-radius: 50%;
+    border-top-color: var(--color-navblue);
+    animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.show-more {
+    text-align: center;
+    margin: 2rem 0rem;
+}
+
+.show-more button {
+    color: var(--color-main);
+    background: white;
+    text-transform: uppercase;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    border: 1px solid var(--color-main);
+    transition: all 0.3s ease;
+    outline: none;
+}
+
+.show-more button:hover {
+    background: var(--color-main);
+    color: white;
+}
+.grid-3{
+    grid-template-columns: repeat(3,1fr);
+}
+@media only screen and (max-width: 750px){
+    .grid-3{
+      grid-template-columns: repeat(2,1fr);
+    }
+}
+
+
+
+
+
+
+
+
+
+
+/* -- POP UP ----  */
+.product-page .popup p{
+    color: var(--color-black-light);
+}
+
+.product-page .popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 100px 100px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    z-index: 1000;
+    display: flex;
+}
+
+.product-page .closePopup {
+    position: absolute;
+    top: 0rem;
+    right: 0.5rem;
+    font-size: 2.2rem;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: red;
+}
+
+.product-page .closePopup:hover {
+    color: #f00;
+}
+
+.product-page .popup .green{
+    color: var(--color-main);
+    font-weight: 500;
+    text-transform: uppercase;
+    font-size: 1.2rem;
+}
+
+.product-page .popup img {
+    max-width: 100px;
+    margin-bottom: 10px;
+}
+.product-page .popup .left p{
+    margin-bottom: 0.2rem;
+    font-size: 1rem;
+    text-transform: uppercase;
+}
+
+.product-page .popup .total{
+    font-weight: 600;
+    color: var(--color-navblue);
+}
+
+.product-page .buttons a {
+    margin-right: 10px;
+    padding: 10px 20px;
+    border: 1px solid var(--color-navblue);
+    color: var(--color-navblue);
+    background: #fff;
+    cursor: pointer;
+    text-align: center;
+    border-radius: 5px;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.product-page .buttons a:hover {
+    background-color: var(--color-main);
+    color: white;
+    border-color: var(--color-main);
+}
+
+
+
+
+/* Media Querry ---  */
+
+@media only screen and (max-width: 768px){
+
+    /* -- Popup ---  */
+    .product-page .popup {
+        width: 80%;
+    }
+    .product-page .popup .right{
+        margin-top: 0.5rem;
+        padding-top: 0.5rem;
+        text-align: center;
+        border-top: 1px solid var(--color-navblue);
+    }
+    .product-page .popup .right p{
+        margin-bottom: 0.2rem;
+        text-align: center;
+    }
+    .product-page .popup .left p{
+        margin-bottom: 0.2rem;
+        text-align: center;
+    }
+    
+}
+
+
+@media only screen and (max-width: 420px){
+    .product-page .popup .green {
+        font-size: 1rem;
+    }
+}
