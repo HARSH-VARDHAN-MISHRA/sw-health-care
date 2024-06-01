@@ -185,18 +185,30 @@ a{
   object-fit: contain;
   padding-bottom: 0.2rem;
 }
+.single-pro .img{
+  position: relative;
+}
+.single-pro .img .offpercent{
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: white;
+  background: var(--color-main);
+  border-bottom-right-radius: 5px;
+  padding: 0rem 0.2rem;
+  z-index: 500;
+}
 .single-pro .content{
   padding: 0.7rem 0.3rem;
   border-top: 1px solid var(--border-color-1);
   border-top: 1px solid rgba(0, 0, 0, 0.05);
+  text-align: center;
 }
-.single-pro .content .flex{
-  align-items: end;
-  margin-bottom: 0.5rem;
-}
+
 .single-pro .content .price{
   display: flex;
-  align-items: baseline;
+  align-items: center;
+  justify-content: center;
   gap: 0.5rem;
 }
 
@@ -213,12 +225,7 @@ a{
   white-space: wrap;
   text-overflow: ellipsis;
 }
-.single-pro .content .offpercent{
-  color: white;
-  background: var(--color-main);
-  border-radius: 5px;
-  padding: 0rem 0.2rem;
-}
+
 .single-pro .pro-name{
   color: var(--color-black);
 }
@@ -226,34 +233,21 @@ a{
 
 
 
-/* .single-pro .grid-2{
-  display: grid;
-  grid-template-columns: repeat(2,1fr);
-  gap: 0.2rem;
-  border: 1px solid white;
-  transition: var(--transition-3);
+.view-more{
+  text-align: center;
 }
-.single-pro .grid-2 button{
-  outline: none;
-  border: 1px solid var(--color-navblue);
-  color: var(--color-navblue);
-  font-weight: 500;
-  text-transform: capitalize;
-  padding: 0.3rem 0.1rem;
-  background: var(--color-light-weight);
-  transition: var(--transition-3);
-}
-.single-pro .grid-2 button.buyNow{
-  border: 1px solid var(--color-navblue);
-  background: var(--color-navblue);
+.view-more a{
   color: white;
-  font-weight: 400;
-  padding: 0.3rem 0.1rem;
-}
-.single-pro .grid-2 button:hover{
-  
   background: var(--color-navblue);
-} */
+  border: 1px solid var(--color-navblue);
+  padding: 0.5rem 1rem;
+  text-transform: capitalize;
+  transition: all 0.3s ease;
+}
+.view-more a:hover{
+  color: var(--color-navblue);
+  background: white;
+}
 
 
 @media only screen and (max-width: 1000px) {
@@ -284,8 +278,7 @@ a{
   }
   .single-pro .content .price {
     display: flex;
-    /* flex-direction: column; */
-    gap: 0rem;
+    margin-top: 0.5rem;
   }
 }
 

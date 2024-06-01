@@ -154,6 +154,13 @@ const SingleProductPage = () => {
         setShowModal(false);
     };
 
+    useEffect(() => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    }, []);
+
     return (
         <>
             <section className="bread">
@@ -235,14 +242,6 @@ const SingleProductPage = () => {
                 {SingleProduct[0].productName} <br /> added to cart!
             </div>
 
-            {/* <div className={`modal-harsh ${showModal ? 'show' : ''}`} onClick={closeModal}>
-                <div className="modal-content-harsh" onClick={e => e.stopPropagation()}>
-                    <h2>Added to Cart</h2>
-                    <p>{SingleProduct[0].productName} has been added to your cart with quantity {quantity}.</p>
-                    <button onClick={closeModal}>Close</button>
-                </div>
-            </div> */}
-
 
             <SubHead title="Related Products" />
 
@@ -252,20 +251,20 @@ const SingleProductPage = () => {
                 <div className="container">
                     <div className="product-grid">
 
-                        {productList.map((product, index) => (
+                    {productList.map((product, index) => (
                             <Link to="/category/products/product" className="single-pro" key={index}>
                                 <div className="img">
                                     <img src={product.productImage} alt={product.productName} />
+                                    <div className="offpercent">{product.offpercentage}% off</div>
                                 </div>
                                 <div className="content">
                                     <div className="pro-name">{product.productName}</div>
-                                    <div className="flex">
-                                        <div className="price">
-                                            <h4>₹{product.offerPrice}</h4>
-                                            <del>₹{product.actualPrice}</del>
-                                        </div>
-                                        <div className="offpercent">{product.offpercentage}% off</div>
+                                    
+                                    <div className="price">
+                                        <h4>₹{product.offerPrice}</h4>
+                                        <del>₹{product.actualPrice}</del>
                                     </div>
+                                    
                                     
                                     {/* <div className="grid-2">
                                         <button className="addTocart">Add to cart</button>

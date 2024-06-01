@@ -102,16 +102,16 @@ const MostSelling = () => {
                             <Link to="/category/products/product" className="single-pro" key={index}>
                                 <div className="img">
                                     <img src={product.productImage} alt={product.productName} />
+                                    <div className="offpercent">{product.offpercentage}% off</div>
                                 </div>
                                 <div className="content">
                                     <div className="pro-name">{product.productName}</div>
-                                    <div className="flex">
-                                        <div className="price">
-                                            <h4>₹{product.offerPrice}</h4>
-                                            <del>₹{product.actualPrice}</del>
-                                        </div>
-                                        <div className="offpercent">{product.offpercentage}% off</div>
+                                    
+                                    <div className="price">
+                                        <h4>₹{product.offerPrice}</h4>
+                                        <del>₹{product.actualPrice}</del>
                                     </div>
+                                    
                                     
                                     {/* <div className="grid-2">
                                         <button className="addTocart">Add to cart</button>
@@ -120,8 +120,11 @@ const MostSelling = () => {
                                 </div>
                             </Link>
                         ))}
-
+                    
                     </div>
+                        <div className="view-more my-4">
+                            <Link to="/category/products">View All Products</Link>
+                        </div>
                 </div>
             </section>
         </>

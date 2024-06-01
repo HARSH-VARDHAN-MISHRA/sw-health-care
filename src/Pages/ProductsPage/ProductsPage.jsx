@@ -118,28 +118,28 @@ const ProductsPage = () => {
             <div className="container">
                 <div className="product-grid">
 
-                    {productList.map((product, index) => (
-                        <Link className="single-pro" to="/category/products/product" key={index}>
-                            <div className="img">
-                                <img src={product.productImage} alt={product.productName} />
-                            </div>
-                            <div className="content">
-                                <div className="pro-name">{product.productName}</div>
-                                <div className="flex">
+                {productList.map((product, index) => (
+                            <Link to="/category/products/product" className="single-pro" key={index}>
+                                <div className="img">
+                                    <img src={product.productImage} alt={product.productName} />
+                                    <div className="offpercent">{product.offpercentage}% off</div>
+                                </div>
+                                <div className="content">
+                                    <div className="pro-name">{product.productName}</div>
+                                    
                                     <div className="price">
                                         <h4>₹{product.offerPrice}</h4>
                                         <del>₹{product.actualPrice}</del>
                                     </div>
-                                    <div className="offpercent">{product.offpercentage}% off</div>
+                                    
+                                    
+                                    {/* <div className="grid-2">
+                                        <button className="addTocart">Add to cart</button>
+                                        <button className="buyNow">Buy Now</button>
+                                    </div> */}
                                 </div>
-                                
-                                {/* <div className="grid-2">
-                                    <button className="addTocart">Add to cart</button>
-                                    <button className="buyNow">Buy Now</button>
-                                </div> */}
-                            </div>
-                        </Link>
-                    ))}
+                            </Link>
+                        ))}
 
                 </div>
             </div>

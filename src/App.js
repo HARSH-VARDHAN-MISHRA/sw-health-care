@@ -11,6 +11,7 @@ import Login from './Components/Login/Login';
 import SignIn from './Components/Login/SignIn';
 import ForgetPassword from './Components/Login/ForgetPassword';
 import ProfilePage from './Pages/ProfilePage/ProfilePage';
+import CartPage from './Pages/CartPage/CartPage';
 
 function App() {
   return (
@@ -23,6 +24,8 @@ function App() {
           <Route path='/categories' element={<AllCategoryPage/>} />
           <Route path='/category/products' element={<ProductsPage/>} />
           <Route path='/category/products/product' element={<SingleProductPage/>} />
+          <Route path='/cart' element={<CartPage/>} />
+          {/* <Route path='/cart/checkout' element={<FinalCart/>} /> */}
 
           {/* ------- Authentication ---------  */}
           <Route path='/login' element={<Login />} />
