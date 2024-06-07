@@ -11,7 +11,9 @@ import Payment from '../../Components/Payment/Payment'
 
 const HomePage = () => {
 
-    const [allShopBanner,setShopBanner] = useState([]) 
+    const [allShopBanner,setShopBanner] = useState([]); 
+    const [allTags,setTags] = useState([]); 
+    const [allProducts,setAllProducts] = useState([]); 
 
     const handleShopBanner = async ()=>{
         try {
@@ -26,12 +28,37 @@ const HomePage = () => {
         }
     }
 
+    const fetchTags = async ()=>{
+        try {
+            const res = await axios.get("http://localhost:9875/api/v1/get-all-tag");
+            setTags(res.data.data)
+            console.log(allTags)
+        } catch (error) {
+            console.log("Something Issue to fetch Tags : ",error)
+        }
+    }
+
+    const fetchAllProducts = async ()=>{
+        try {
+            const res = await axios.get("http://localhost:9875/api/v1/get-all-product");
+            setAllProducts(res.data.data)
+            console.log(allProducts)
+        } catch (error) {
+            console.log("Something Issue to fetch Products : ",error)
+        }
+    }
+
+    
+
+
     useEffect(() => {
         window.scrollTo({
             top: 0,
             behavior: 'smooth'
         });
         handleShopBanner();
+        fetchTags();
+        fetchAllProducts();
     }, []);
 
     return (
@@ -41,8 +68,47 @@ const HomePage = () => {
 
             <SubHead title="Our Categories" />
             <AllCategory/>
-            <SubHead title="Most Selling Products" />
-            <MostSelling/>
+            {/* <SubHead title="Most Selling Products" />
+            <MostSelling/> */}
+
+            
+
+            {allTags && allTags.map((tags,tagIndex)=>(
+                <>
+                <section key={tagIndex}>
+                    <SubHead title={tags.title} />
+                    <div className="container">
+                        <div className="product-grid" >
+                            {
+                                allProducts.filter((item)=>item.tag === tags.title).map((filterpro,filterproindex)=>(
+                                                                    
+                                    <Link to={`/category/${filterpro.categoryName}/${filterpro.productName}`} className="single-pro" key={filterproindex}>
+                                        <div className="img">
+                                            <img src={filterpro.firstImage} alt={filterpro.productName} />
+                                            <div className="offpercent">{filterpro.discountPercentage}% off</div>
+                                            <div className="tag">{filterpro.tag}</div>
+                                        </div>
+                                        <div className="content">
+                                            <div className="pro-name">{filterpro.productName}</div>
+
+                                            <div className="price">
+                                                <h4>₹{filterpro.discountPrice}</h4>
+                                                <del>₹{filterpro.price}</del>
+                                            </div>
+                                        </div>
+                                    </Link>
+                                    
+                                ))
+                            }
+                        </div>
+                    </div>
+
+                </section>
+                    
+                    
+                </>
+                
+            ))}
 
             <section className="banners">
                 <div className="container">
@@ -56,9 +122,6 @@ const HomePage = () => {
                     </div>
                 </div>
             </section>
-
-            <SubHead title="New Arrivals" />
-            <MostSelling/>
 
             <Payment />
         </>
