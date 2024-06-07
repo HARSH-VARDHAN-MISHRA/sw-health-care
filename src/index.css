@@ -198,6 +198,16 @@ a{
   padding: 0rem 0.2rem;
   z-index: 500;
 }
+.single-pro .img .tag{
+  position: absolute;
+  top: 0%;
+  right: 0%;
+  color: white;
+  background: var(--color-navblue);
+  border-bottom-left-radius: 5px;
+  padding: 0rem 0.2rem;
+  z-index: 500;
+}
 .single-pro .content{
   padding: 0.7rem 0.3rem;
   border-top: 1px solid var(--border-color-1);

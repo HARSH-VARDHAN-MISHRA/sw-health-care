@@ -13,6 +13,7 @@ import ForgetPassword from './Components/Login/ForgetPassword';
 import ProfilePage from './Pages/ProfilePage/ProfilePage';
 import CartPage from './Pages/CartPage/CartPage';
 import ContactPage from './Pages/ContactPage/ContactPage';
+import ProductByCategory from './Pages/ProductsPage/ProductByCategory';
 
 function App() {
   return (
@@ -23,10 +24,16 @@ function App() {
         <Routes>
           <Route path='/' element={<HomePage/>} />
           <Route path='/categories' element={<AllCategoryPage/>} />
-          <Route path='/category/products' element={<ProductsPage/>} />
-          <Route path='/category/products/product' element={<SingleProductPage/>} />
+
+          {/* <Route path='/category/products' element={<ProductsPage/>} /> */}
+          {/* <Route path='/category/products/product' element={<SingleProductPage/>} /> */}
           <Route path='/cart' element={<CartPage/>} />
           {/* <Route path='/cart/checkout' element={<FinalCart/>} /> */}
+
+          {/* --- Dynamic Routing ---  */}
+          <Route path='/category/:name' element={<ProductByCategory/>} />
+          <Route path='/category/:name/:proname' element={<SingleProductPage/>} />
+
 
           {/* Pages ---  */}
           <Route path='/contact' element={<ContactPage/>} />
@@ -38,6 +45,8 @@ function App() {
 
           {/* -- User Pages  ---  */}
           <Route path='/profile' element={<ProfilePage/>} />
+
+          {/* category/${category.categoryName} */}
 
         </Routes>
 

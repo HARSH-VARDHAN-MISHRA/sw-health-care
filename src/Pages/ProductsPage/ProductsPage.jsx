@@ -313,6 +313,7 @@ const ProductsPage = () => {
         }
     ];
 
+
     const [displayCount, setDisplayCount] = useState(5);
     const [loading, setLoading] = useState(false);
 

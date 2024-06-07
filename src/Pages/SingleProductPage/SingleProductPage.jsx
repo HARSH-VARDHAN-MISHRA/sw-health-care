@@ -1,34 +1,36 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import './SingleProductPage.css';
 import SubHead from "../../Components/SubHead/SubHead";
+import axios from "axios";
 
 const SingleProductPage = () => {
-    const SingleProduct = [
-        {
-            category: "Compressor Nebulizer",
-            productName: "SW HEALTH CARE Breast Reliever Pump WITH CUP",
-            productImages: [
-                "https://5.imimg.com/data5/SELLER/Default/2024/2/388298195/KV/DY/BW/184498134/manual-breast-pump-500x500.jpeg",
-                "https://5.imimg.com/data5/SELLER/Default/2024/2/388299181/MU/BE/QV/184498134/manual-breast-pump-500x500.jpg",
-                "https://5.imimg.com/data5/SELLER/Default/2024/2/388299311/EF/FU/MX/184498134/manual-breast-pump-500x500.jpeg",
-                "https://5.imimg.com/data5/SELLER/Default/2024/2/388299523/UX/XA/UV/184498134/manual-breast-pump-500x500.jpg"
-            ],
-            actualPrice: 1200,
-            offpercentage: 23,
-            offerPrice: 925,
-            desc: "Perfect for elder and kids. This machine is easy to use and more suitable for elder and kids. It is perfect for home use, providing dependable efficient nebulization treatments. Effective for cough, wheezing, asthma, cold, bronchitis and other conditions requiring nebulization.",
-            points: [
-                "Effective for cough, wheezing, asthma, COPD, bronchitis and other conditions requiring nebulization.",
-                "The product is compatible with doctor prescribed medicine or can be used only with saline water.",
-                "Suits for personal and professional use at home and hospital on daily basis for adult and child.",
-                "Comes with 2 year warranty."
-            ]
-        }
-    ];
+    
+    // const SingleProduct = [
+    //     {
+    //         category: "Compressor Nebulizer",
+    //         productName: "SW HEALTH CARE Breast Reliever Pump WITH CUP",
+    //         productImages: [
+    //             "https://5.imimg.com/data5/SELLER/Default/2024/2/388298195/KV/DY/BW/184498134/manual-breast-pump-500x500.jpeg",
+    //             "https://5.imimg.com/data5/SELLER/Default/2024/2/388299181/MU/BE/QV/184498134/manual-breast-pump-500x500.jpg",
+    //             "https://5.imimg.com/data5/SELLER/Default/2024/2/388299311/EF/FU/MX/184498134/manual-breast-pump-500x500.jpeg",
+    //             "https://5.imimg.com/data5/SELLER/Default/2024/2/388299523/UX/XA/UV/184498134/manual-breast-pump-500x500.jpg"
+    //         ],
+    //         actualPrice: 1200,
+    //         offpercentage: 23,
+    //         offerPrice: 925,
+    //         desc: "Perfect for elder and kids. This machine is easy to use and more suitable for elder and kids. It is perfect for home use, providing dependable efficient nebulization treatments. Effective for cough, wheezing, asthma, cold, bronchitis and other conditions requiring nebulization.",
+    //         points: [
+    //             "Effective for cough, wheezing, asthma, COPD, bronchitis and other conditions requiring nebulization.",
+    //             "The product is compatible with doctor prescribed medicine or can be used only with saline water.",
+    //             "Suits for personal and professional use at home and hospital on daily basis for adult and child.",
+    //             "Comes with 2 year warranty."
+    //         ]
+    //     }
+    // ];
 
     const productList = [
         {
@@ -151,24 +153,45 @@ const SingleProductPage = () => {
         setShowPopup(false);
     };
 
+    // --- AXIOS --- 
+    const { name , proname } = useParams([]);
+    const [productData,setProductdata] = useState([]);
+
+    const handleProductFetch = async ()=>{
+        try {
+            const response = await axios.get("http://localhost:9875/api/v1/get-all-product");
+            const resData = response.data.data;
+            const filterdata = resData.filter((item)=>item.categoryName === name && item.productName === proname);
+            console.log(filterdata)
+            setProductdata(filterdata)
+            console.log(productData)
+        } catch (error) {
+            console.log(error)
+        }
+    }
 
     useEffect(() => {
         window.scrollTo({
             top: 0,
             behavior: 'smooth'
         });
+        handleProductFetch();
     }, []);
+
+    if (productData.length === 0) {
+        return <div>Loading...</div>;
+    }
 
     return (
         <>
             <section className="bread">
                 <div className="container">
                     <nav aria-label="breadcrumb ">
-                        <h2>{SingleProduct[0].productName}</h2>
+                        <h2>{productData[0].productName}</h2>
                         <ol className="breadcrumb">
                             <li className="breadcrumb-item"><Link to="/">Home</Link></li>
                             <li className="breadcrumb-item"><Link to="/categories">Categories</Link></li>
-                            <li className="breadcrumb-item active" aria-current="page">{SingleProduct[0].productName}</li>
+                            <li className="breadcrumb-item active" aria-current="page">{productData[0].productName}</li>
                         </ol>
                     </nav>
                 </div>
@@ -177,12 +200,13 @@ const SingleProductPage = () => {
             <section className="product-page py-5">
                 <div className="container">
                     <div className="row">
-                        <div className="col-md-5 mb-2">
+                        
+                        {/* <div className="col-md-5 mb-2">
                             <div className="main-slider">
                                 <Slider asNavFor={nav2} ref={slider => (sliderRef1 = slider)}>
-                                    {SingleProduct[0].productImages.map((image, index) => (
+                                    {productData[0].productImages.map((image, index) => (
                                         <div key={index}>
-                                            <img src={image} alt={`${SingleProduct[0].productName} ${index + 1}`} />
+                                            <img src={image} alt={`${image.productName} ${index + 1}`} />
                                         </div>
                                     ))}
                                 </Slider>
@@ -195,21 +219,22 @@ const SingleProductPage = () => {
                                     swipeToSlide={true}
                                     focusOnSelect={true}
                                 >
-                                    {SingleProduct[0].productImages.map((image, index) => (
+                                    {productData[0].productImages.map((image, index) => (
                                         <div key={index} className="sm-images">
-                                            <img src={image} alt={`${SingleProduct[0].productName} ${index + 1}`} className="img-thumbnail mx-1" />
+                                            <img src={image} alt={`${productName.productName} ${index + 1}`} className="img-thumbnail mx-1" />
                                         </div>
                                     ))}
                                 </Slider>
                             </div>
-                        </div>
+                        </div> */}
+
                         <div className="col-md-7 content">
-                            <h1>{SingleProduct[0].productName}</h1>
+                            <h1>{productData[0].productName}</h1>
                             <div className="d-flex prices gap-2">
-                                <h2>₹{SingleProduct[0].offerPrice}</h2>
+                                <h2>₹{productData[0].discountPrice}</h2>
                                 <h5>
-                                    <del>₹{SingleProduct[0].actualPrice}</del>
-                                    <span className="off">({SingleProduct[0].offpercentage}% off)</span>
+                                    <del>₹{productData[0].price}</del>
+                                    <span className="off">({productData[0].discountPercentage}% off)</span>
                                 </h5>
                             </div>
                             
@@ -236,8 +261,8 @@ const SingleProductPage = () => {
                                         <div className="col-md-6">
                                             <div className="left text-center">
                                                 
-                                                <img src={SingleProduct[0].productImages[0]} alt="Product Image" />
-                                                <p>{SingleProduct[0].productName}</p>
+                                                <img src={productData[0].productImages[0]} alt={productData[0].productName} />
+                                                <p>{productData[0].productName}</p>
                                                 <p>QTY: {quantity}</p>
                                                 
                                             </div>
@@ -248,7 +273,7 @@ const SingleProductPage = () => {
                                                 <p>There are {quantity} items in your cart</p>
                                                 <p className='total'>TOTAL: Rs. 5,993.00</p>
                                                 <div className="buttons">
-                                                    <Link to="/category/products" className="continueShopping">Continue shopping</Link>
+                                                    <Link to="/categories" className="continueShopping">Continue shopping</Link>
                                                     <Link to="/cart" className="viewCart">View cart</Link>
                                                 </div>
                                             </div>
@@ -259,9 +284,9 @@ const SingleProductPage = () => {
                                 </div>
                             )}
 
-                            <p>{SingleProduct[0].desc}</p>
+                            <p>{productData[0].productDescription}</p>
                             <ol>
-                                {SingleProduct[0].points.map((point, index) => (
+                                {productData[0].productPoints.map((point, index) => (
                                     <li key={index}>{point}</li>
                                 ))}
                             </ol>

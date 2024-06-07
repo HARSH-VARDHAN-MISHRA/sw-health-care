@@ -27,14 +27,15 @@ const Header = () => {
         setFixedHeader(false);
     };
 
-    const [categ, setCateg] = useState([])
-    const handleCategories = async () => {
+    const [category,setCategory] = useState([]) 
+
+    const handleFetch = async ()=>{
         try {
-            const response = await axios.get("https://api.camrosteel.com/api/v1/getAllCategorey")
-            console.log(response.data);
-            setCateg(response.data)
+            const res = await axios.get("http://localhost:9875/api/v1/get-all-category");
+            setCategory(res.data.data)
+            console.log(category)
         } catch (error) {
-            console.log(error);
+            console.log("Something Issue to fetch categories : ",error)
         }
     }
 
@@ -65,7 +66,7 @@ const Header = () => {
 
 
     useEffect(() => {
-        handleCategories();
+        handleFetch();
 
         // -- To fix the header at top -- 
         window.addEventListener('scroll', handleScroll);
@@ -146,9 +147,9 @@ const Header = () => {
                         <li><Link onClick={handleCloseBar} to="/">Home <i class="fa-solid fa-arrow-right"></i></Link></li>
                         <li><Link onClick={handleCloseBar} to="/categories">Shop By Categories <i class="fa-solid fa-arrow-right"></i></Link></li>
 
-                        {/* {categ.map((item, index) => (
-                            <li key={index}><Link onClick={handleCloseBar} to={`/ProductBy-Category/${item.category}`}>{item.category} <i class="fa-solid fa-arrow-right"></i></Link></li>
-                        ))} */}
+                        {category && category.map((item, index) => (
+                            <li key={index}><Link onClick={handleCloseBar} to={`/category/${item.categoryName}`}>{item.categoryName} <i class="fa-solid fa-arrow-right"></i></Link></li>
+                        ))}
                     </ul>
 
                     <div class="social-icons mt-4">

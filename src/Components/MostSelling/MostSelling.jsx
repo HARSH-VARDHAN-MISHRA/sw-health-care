@@ -103,6 +103,7 @@ const MostSelling = () => {
                                 <div className="img">
                                     <img src={product.productImage} alt={product.productName} />
                                     <div className="offpercent">{product.offpercentage}% off</div>
+                                    <div className="tag">New Arrival</div>
                                 </div>
                                 <div className="content">
                                     <div className="pro-name">{product.productName}</div>
