@@ -1,37 +1,13 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link, useParams } from 'react-router-dom';
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+
 import './SingleProductPage.css';
 import SubHead from "../../Components/SubHead/SubHead";
 import axios from "axios";
 
 const SingleProductPage = () => {
     
-    // const SingleProduct = [
-    //     {
-    //         category: "Compressor Nebulizer",
-    //         productName: "SW HEALTH CARE Breast Reliever Pump WITH CUP",
-    //         productImages: [
-    //             "https://5.imimg.com/data5/SELLER/Default/2024/2/388298195/KV/DY/BW/184498134/manual-breast-pump-500x500.jpeg",
-    //             "https://5.imimg.com/data5/SELLER/Default/2024/2/388299181/MU/BE/QV/184498134/manual-breast-pump-500x500.jpg",
-    //             "https://5.imimg.com/data5/SELLER/Default/2024/2/388299311/EF/FU/MX/184498134/manual-breast-pump-500x500.jpeg",
-    //             "https://5.imimg.com/data5/SELLER/Default/2024/2/388299523/UX/XA/UV/184498134/manual-breast-pump-500x500.jpg"
-    //         ],
-    //         actualPrice: 1200,
-    //         offpercentage: 23,
-    //         offerPrice: 925,
-    //         desc: "Perfect for elder and kids. This machine is easy to use and more suitable for elder and kids. It is perfect for home use, providing dependable efficient nebulization treatments. Effective for cough, wheezing, asthma, cold, bronchitis and other conditions requiring nebulization.",
-    //         points: [
-    //             "Effective for cough, wheezing, asthma, COPD, bronchitis and other conditions requiring nebulization.",
-    //             "The product is compatible with doctor prescribed medicine or can be used only with saline water.",
-    //             "Suits for personal and professional use at home and hospital on daily basis for adult and child.",
-    //             "Comes with 2 year warranty."
-    //         ]
-    //     }
-    // ];
-
+    
     const productList = [
         {
             category: "Compressor Nebulizer",
@@ -123,18 +99,13 @@ const SingleProductPage = () => {
         }
     ];
 
-    const [nav1, setNav1] = useState(null);
-    const [nav2, setNav2] = useState(null);
+
     const [showPopup, setShowPopup] = useState(false);
 
     const [quantity, setQuantity] = useState(1);
-    let sliderRef1 = useRef(null);
-    let sliderRef2 = useRef(null);
+    const [mainImage, setMainImage] = useState("");
 
-    useEffect(() => {
-        setNav1(sliderRef1);
-        setNav2(sliderRef2);
-    }, []);
+    
 
     const increaseQuantity = () => {
         setQuantity(quantity + 1);
@@ -156,15 +127,21 @@ const SingleProductPage = () => {
     // --- AXIOS --- 
     const { name , proname } = useParams([]);
     const [productData,setProductdata] = useState([]);
+    const [categoryProductData,setCategoryProductData] = useState([]);
 
     const handleProductFetch = async ()=>{
         try {
             const response = await axios.get("http://localhost:9875/api/v1/get-all-product");
             const resData = response.data.data;
             const filterdata = resData.filter((item)=>item.categoryName === name && item.productName === proname);
-            console.log(filterdata)
+            const filterCategorydata = resData.filter((item)=>item.categoryName === name);
+            // console.log(filterdata)
             setProductdata(filterdata)
-            console.log(productData)
+            setCategoryProductData(filterCategorydata);
+            // console.log(productData)
+            if (filterdata.length > 0) {
+                setMainImage(filterdata[0].firstImage);
+            }
         } catch (error) {
             console.log(error)
         }
@@ -176,7 +153,7 @@ const SingleProductPage = () => {
             behavior: 'smooth'
         });
         handleProductFetch();
-    }, []);
+    }, [name,proname]);
 
     if (productData.length === 0) {
         return <div>Loading...</div>;
@@ -200,33 +177,26 @@ const SingleProductPage = () => {
             <section className="product-page py-5">
                 <div className="container">
                     <div className="row">
-                        
-                        {/* <div className="col-md-5 mb-2">
-                            <div className="main-slider">
-                                <Slider asNavFor={nav2} ref={slider => (sliderRef1 = slider)}>
-                                    {productData[0].productImages.map((image, index) => (
-                                        <div key={index}>
-                                            <img src={image} alt={`${image.productName} ${index + 1}`} />
-                                        </div>
-                                    ))}
-                                </Slider>
+
+                        <div className="col-md-5 mb-4">
+                            <div className="main-image">
+                                <img src={mainImage} className="img-thumbnail" alt={productData[0]?.productName} />
                             </div>
-                            <div className="thumbnail-slider mt-2">
-                                <Slider
-                                    asNavFor={nav1}
-                                    ref={slider => (sliderRef2 = slider)}
-                                    slidesToShow={3}
-                                    swipeToSlide={true}
-                                    focusOnSelect={true}
-                                >
-                                    {productData[0].productImages.map((image, index) => (
-                                        <div key={index} className="sm-images">
-                                            <img src={image} alt={`${productName.productName} ${index + 1}`} className="img-thumbnail mx-1" />
-                                        </div>
-                                    ))}
-                                </Slider>
+                            <div className="small-images row mt-2">                                
+                                {[productData[0]?.firstImage, productData[0]?.secondImage, productData[0]?.thirdImage, productData[0]?.forthImage].map((image, index) => (
+                                    <div className="col-3 ">
+                                        <img
+                                            key={index}
+                                            src={image}
+                                            alt={`${productData[0]?.productName} ${index + 1}`}
+                                            onMouseEnter={() => setMainImage(image)}
+                                            className="img-thumbnail"
+                                        />
+
+                                    </div>
+                                ))}
                             </div>
-                        </div> */}
+                        </div>
 
                         <div className="col-md-7 content">
                             <h1>{productData[0].productName}</h1>
@@ -245,11 +215,19 @@ const SingleProductPage = () => {
                                     <span className="mx-2">{quantity}</span>
                                     <button onClick={increaseQuantity} className="input-btn">+</button>
                                 </div>
-
-                                <button onClick={addToCart} className=" add-to-cart-btn">Add to Cart</button>
+                                
 
                             </div>
 
+                            <div className="flex pg-btns">
+                                <button className="hover-btn" onClick={addToCart}>
+                                    <span>ADD TO CART</span>
+                                </button>
+                                <button className="hover-btn">
+                                    <span>BUY NOW</span>
+                                </button>
+
+                            </div>
 
                             {showPopup && (
                                 <div className="popup">
@@ -261,7 +239,7 @@ const SingleProductPage = () => {
                                         <div className="col-md-6">
                                             <div className="left text-center">
                                                 
-                                                <img src={productData[0].productImages[0]} alt={productData[0].productName} />
+                                                <img src={productData[0].firstImage} alt={productData[0].productName} />
                                                 <p>{productData[0].productName}</p>
                                                 <p>QTY: {quantity}</p>
                                                 
@@ -298,31 +276,24 @@ const SingleProductPage = () => {
 
             <SubHead title="Related Products" />
 
-
-
             <section className='my-5'>
                 <div className="container">
                     <div className="product-grid">
 
-                    {productList.map((product, index) => (
-                            <Link to="/category/products/product" className="single-pro" key={index}>
+                    {categoryProductData.map((product, index) => (
+                            <Link to={`/category/${product.categoryName}/${product.productName}`} className="single-pro" key={index}>
                                 <div className="img">
-                                    <img src={product.productImage} alt={product.productName} />
-                                    <div className="offpercent">{product.offpercentage}% off</div>
+                                    <img src={product.firstImage} alt={product.productName} />
+                                    <div className="offpercent">{product.discountPercentage}% off</div>
+                                    <div className="tag">{product.tag}</div>
                                 </div>
                                 <div className="content">
                                     <div className="pro-name">{product.productName}</div>
-                                    
+
                                     <div className="price">
-                                        <h4>₹{product.offerPrice}</h4>
-                                        <del>₹{product.actualPrice}</del>
+                                        <h4>₹{product.discountPrice}</h4>
+                                        <del>₹{product.price}</del>
                                     </div>
-                                    
-                                    
-                                    {/* <div className="grid-2">
-                                        <button className="addTocart">Add to cart</button>
-                                        <button className="buyNow">Buy Now</button>
-                                    </div> */}
                                 </div>
                             </Link>
                         ))}
