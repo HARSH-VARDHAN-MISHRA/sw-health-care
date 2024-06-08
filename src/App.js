@@ -14,6 +14,10 @@ import ProfilePage from './Pages/ProfilePage/ProfilePage';
 import CartPage from './Pages/CartPage/CartPage';
 import ContactPage from './Pages/ContactPage/ContactPage';
 import ProductByCategory from './Pages/ProductsPage/ProductByCategory';
+import TermCondition from './Pages/ContentPages/TermCondition';
+import PrivacyPolicy from './Pages/ContentPages/PrivacyPolicy';
+import ReturnRefund from './Pages/ContentPages/ReturnRefund';
+import ShippingPolicy from './Pages/ContentPages/ShippingPolicy';
 
 function App() {
   return (
@@ -37,6 +41,11 @@ function App() {
 
           {/* Pages ---  */}
           <Route path='/contact' element={<ContactPage/>} />
+
+          <Route path='/terms-condition' element={<TermCondition/>} />
+          <Route path='/privacy-policy' element={<PrivacyPolicy/>} />
+          <Route path='/return-refund' element={<ReturnRefund/>} />
+          <Route path='/shipping-policy' element={<ShippingPolicy/>} />
 
           {/* ------- Authentication ---------  */}
           <Route path='/login' element={<Login />} />

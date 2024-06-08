@@ -1,0 +1,6 @@
+.allowed{
+    cursor: pointer;
+}
+.not-allowed{
+    cursor: not-allowed;
+}

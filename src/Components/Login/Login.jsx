@@ -1,17 +1,54 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
 import './Login.css'
-import sideBg from './sideBg.jpg'
+import sideBg from './sideBg.jpg';
+import axios from 'axios';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Login = () => {
+
+    const [loading,setLoading] = useState(false);
+    const [formData,setFormData] = useState({
+        name:'',
+        email:''
+    })
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData((prevData) => ({
+            ...prevData,
+            [name]: value
+        }))
+    }
+    const handleSubmit = async (event) =>{
+        setLoading(true)
+        event.preventDefault();
+        try {
+            const response = await axios.post('http://localhost:9875/api/v1/login',formData);
+            setLoading(false)
+            console.log(response.data);
+            toast.success('Login SuccessFull.')
+            localStorage.setItem('swToken',response.data.token)
+            localStorage.setItem('swUser', JSON.stringify(response.data.user))
+            window.location.href = "/"
+        } catch (error) {
+            setLoading(false)
+            toast.error(error.response.data.msg);
+            console.log(error.response.data.msg);
+        }
+    }
+
     useEffect(() => {
         window.scrollTo({
             top: 0,
             behavior: "smooth"
         })
     }, [])
+
   return (
     <>
+        <ToastContainer />
         <section className="my-3 login-page">
             <div className="container">
                 <div className="row login">
@@ -23,15 +60,15 @@ const Login = () => {
                             <h1>Welcome Back !</h1>
                             <p>Please login with your personal Details</p>
                         </div>
-                        <div className="form">
+                        <div className="form" onSubmit={handleSubmit}>
                             <form>
                                 <div className="input-field">
                                     <i class="fa-solid fa-envelope"></i>
-                                    <input type="email" autoFocus placeholder="Enter Email" required />
+                                    <input type="email" autoFocus value={formData.email} name='email' onChange={handleChange} placeholder="Enter Email" required />
                                 </div>
                                 <div className="input-field">
                                     <i class="fa-solid fa-lock"></i>
-                                    <input type="password" placeholder="Enter Password" required />
+                                    <input type="password" onChange={handleChange} value={formData.password} name='password' placeholder="Enter Password" required />
                                 </div>
 
                                 <div className="">
@@ -39,7 +76,9 @@ const Login = () => {
                                     <div></div>
                                 </div>
                                 
-                                <button type='submit'>Login</button>
+                                <button type='submit' disabled={loading} className={`${loading ? 'not-allowed':'allowed' }`}>
+                                    {loading ? "Please Wait ..." : "Login"}
+                                </button>
                             </form>
 
                             <div className="tagline">

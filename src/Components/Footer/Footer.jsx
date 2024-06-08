@@ -20,26 +20,20 @@ const Footer = () => {
               <div class="col-md-3">
                 <h5>Quick Links</h5>
                 <ul class="list-unstyled">
-                    <li><a href="/home" >Home</a></li>
-                    <li><a href="/about" >About Us</a></li>
-                    <li><a href="/our-products" >Products</a></li>
-                    <li><a href="/contact" >Contact Us</a></li>
+                    <li><Link to="/" >Home</Link></li>
+                    <li><Link to="/categories" >Our Categories</Link></li>
+                    <li><Link to="/about" >About Us</Link></li>
+                    <li><Link to="/contact" >Contact Us</Link></li>
                 </ul>
               </div>
 
               <div class="col-md-3">
-                <h5>Categories</h5>
+                <h5>Our Policy</h5>
                 <ul class="list-unstyled">
-                    <li><a href="/products/compressor-nebulizer" >Compressor Nebulizer</a></li>
-                    <li><a href="/products/hot-water-bottle" >Hot Water Bottle</a></li>
-                    <li><a href="/products/digital-thermometer" >Digital Thermometer</a></li>
-                    <li><a href="/products/surgical-tape" >Surgical Tape</a></li>
-                    <li><a href="/products/latex-gloves" >Latex Gloves</a></li>
-                    <li><a href="/products/pulse-oximeter" >Pulse Oximeter</a></li>
-                    <li><a href="/products/plastic-lancet" >Plastic Lancet</a></li>
-                    <li><a href="/products/medical-mask" >Medical Mask</a></li>
-                    <li><a href="/products/steam-vaporizer" >Steam Vaporizer</a></li>
-                    <li><a href="/products/hospital-bedpan" >Hospital Bedpan</a></li>
+                    <li><Link to="/terms-condition" >Term & Conditions</Link></li>
+                    <li><Link to="/privacy-policy" >Privacy Policy</Link></li>
+                    <li><Link to="/return-refund" >Return Refund</Link></li>
+                    <li><Link to="/shipping-policy" >Shipping Policy</Link></li>
                 </ul>
               </div>
               

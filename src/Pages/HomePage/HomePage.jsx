@@ -68,16 +68,12 @@ const HomePage = () => {
 
             <SubHead title="Our Categories" />
             <AllCategory/>
-            {/* <SubHead title="Most Selling Products" />
-            <MostSelling/> */}
-
-            
 
             {allTags && allTags.map((tags,tagIndex)=>(
                 <>
                 <section key={tagIndex}>
                     <SubHead title={tags.title} />
-                    <div className="container">
+                    <div className="container my-4">
                         <div className="product-grid" >
                             {
                                 allProducts.filter((item)=>item.tag === tags.title).map((filterpro,filterproindex)=>(

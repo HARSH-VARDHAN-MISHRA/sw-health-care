@@ -100,7 +100,7 @@ const CartPage = () => {
                                             <button className="btn btn-outline-secondary ms-2" onClick={() => updateQuantity(index, 1)}>+</button>
                                         </div>
                                     </div>
-                                    <button className="btn btn-sm btn-danger ms-3 removeBtn" onClick={() => removeItem(index)}>x</button>
+                                    <button className="btn btn-sm btn-danger ms-3 removeBtn" onClick={() => removeItem(index)}>Remove</button>
                                 </div>
                             ))}
                         </div>
