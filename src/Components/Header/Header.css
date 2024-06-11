@@ -165,7 +165,7 @@ header .icons .icon .cart-numb{
 
 .side-navbar .bottom-nav{
     position: fixed;
-    bottom: 2%;
+    /* bottom: 2%; */
     width: 100%;
     max-width: 320px;
     padding: 0.2rem;
@@ -174,7 +174,7 @@ header .icons .icon .cart-numb{
     /* display: flex;
     align-items: center;
     gap: 1rem; */
-    border-top: 1px solid var(--color-black-light);
+    /* border-top: 1px solid var(--color-black-light); */
     padding-top: 0.5rem;
     width: 100%;
 }
@@ -190,7 +190,7 @@ header .icons .icon .cart-numb{
     text-transform: capitalize;
 }
 .side-navbar .bottom-nav .profile .detail a{
-    background: red;
+    background: var(--color-navblue);
     padding: 0.2rem;
     width: 100%;
     display: block;

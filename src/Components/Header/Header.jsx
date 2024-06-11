@@ -53,6 +53,11 @@ const Header = () => {
         }
     }
 
+    // ----- cart Items ---
+    const cartItems = JSON.parse(localStorage.getItem('swcart'));
+    const cartLength = cartItems.length;
+    // console.log(cartLength)
+
 
 
     // --- Side Cart ---- 
@@ -76,15 +81,15 @@ const Header = () => {
 
     }, []);
 
-    const token = sessionStorage.getItem('token')
-    const User = sessionStorage.getItem("user")
+    const token = localStorage.getItem('swToken')
+    const User = localStorage.getItem("swUser")
     const user = JSON.parse(User)
 
     return (
         <>
             <header className={fixedHeader ? 'fixed-top' : ''}>
                 <div className="header-top text-center">
-                    <p>WELCOME TO CAMRO - STAINLESS STEEL WORLD</p>
+                    <p>WELCOME TO CAMRO - SW Health Care</p>
                 </div>
 
                 <div className="header-navbar">
@@ -114,10 +119,10 @@ const Header = () => {
                                 <Link to="/login" className="cart icon">
                                     <div className="cre">Login</div>
                                 </Link>
-                                <span style={{ color: "green" }}>|</span>
-                                {/* <Link to="/sign-up" className="cart icon">
-                  <div className="cre">Create Account</div>
-                </Link> */}
+                                {/* <span style={{ color: "green" }}>|</span>
+                                <Link to="/sign-up" className="cart icon">
+                                    <div className="cre">Create Account</div>
+                                </Link> */}
                             </>
                         )}
 
@@ -126,7 +131,7 @@ const Header = () => {
                         {/* <Link  onClick={handleCartOpen} className="cart icon"> */}
                         <Link to="/cart" className="cart icon">
                             <i class="fa-solid fa-cart-shopping"></i>
-                            <span className='cart-numb'>1</span>
+                            <span className='cart-numb'>{cartLength}</span>
                         </Link>
                         <div className="bar icon" onClick={handleOpenBar}>
                             <i class="fa-solid fa-bars"></i>
@@ -152,7 +157,7 @@ const Header = () => {
                         ))}
                     </ul>
 
-                    <div class="social-icons mt-4">
+                    <div class="social-icons d-none">
                         <a href="#"><i class="fab fa-facebook-f"></i></a>
                         <a href="#"><i class="fab fa-twitter"></i></a>
                         <a href="#"><i class="fab fa-instagram"></i></a>
@@ -163,7 +168,7 @@ const Header = () => {
                         <div className="bottom-nav">
                             <div className="profile">
                                 <div className="detail">
-                                    <h5>{user.Name}</h5>
+                                    <h5>{user.name}</h5>
                                     <Link to="/profile" onClick={handleCloseBar}>View Profile</Link>
                                 </div>
                             </div>
@@ -173,18 +178,7 @@ const Header = () => {
                         ""
                     )}
 
-                    {/* <div className="bottom-nav">
-              <div className="profile">
-                <div className="pro-img">
-                  <img src="https://avatars.githubusercontent.com/u/122715402?v=4" alt="" />
-                </div>
-                <div className="detail">
-                  <h5>Deepak Verma</h5>
-                  <Link to="/profile">View Profile</Link>
-                </div>
-
-              </div>
-            </div> */}
+                    
 
                 </nav>
             </div>

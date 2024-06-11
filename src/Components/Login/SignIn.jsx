@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './Login.css'
 import sideBg from './sideBg.jpg'
 import { ToastContainer, toast } from 'react-toastify';
@@ -8,6 +8,7 @@ import axios from 'axios'
 
 const SignIn = () => {
 
+    const navigate = useNavigate();
     const [loading,setLoading] = useState(false);
     const [formData, setFormData] = useState({
         name: '',
@@ -32,14 +33,15 @@ const SignIn = () => {
             const response = await axios.post('http://localhost:9875/api/v1/register',formData);
             console.log(response.data);
             setLoading(false)
-            toast.success('Registration SuccessFull')
-            localStorage.setItem('swToken',response.data.token)
-            localStorage.setItem('swUser', JSON.stringify(response.data.user))
-            window.location.href = "/"
+            
+            // window.location.href=`/sign-up/confirm-account/${formData.email}`
+            toast.success('OTP Send Successfully !!');
+            navigate(`/sign-up/confirm-account/${formData.email}`)
         } catch (error) {
             setLoading(false)
-            toast.error(error.response.data.error)
-            console.log(error.response.data.error);
+            console.log(error)
+            toast.error(error.response.data.message)
+            console.log(error.response.data.message);
         }
     }
 
@@ -52,6 +54,7 @@ const SignIn = () => {
     return (
         <>
         <ToastContainer />
+
             <section className="my-3 login-page">
                 <div className="container">
                     <div className="row login">
@@ -86,7 +89,7 @@ const SignIn = () => {
                                     </div>
 
                                     <button type='submit' disabled={loading} className={`${loading ? 'not-allowed':'allowed' }`}>
-                                        {loading ? "Please Wait ..." : "Sign Up"}
+                                        {loading ? "Please Wait ..." : "Send OTP"}
                                     </button>
                                 </form>
                             </div>
@@ -97,6 +100,8 @@ const SignIn = () => {
                     </div>
                 </div>
             </section>
+
+            
         </>
     )
 }

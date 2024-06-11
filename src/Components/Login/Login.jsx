@@ -10,7 +10,7 @@ const Login = () => {
 
     const [loading,setLoading] = useState(false);
     const [formData,setFormData] = useState({
-        name:'',
+        password:'',
         email:''
     })
 
@@ -28,14 +28,22 @@ const Login = () => {
             const response = await axios.post('http://localhost:9875/api/v1/login',formData);
             setLoading(false)
             console.log(response.data);
-            toast.success('Login SuccessFull.')
-            localStorage.setItem('swToken',response.data.token)
-            localStorage.setItem('swUser', JSON.stringify(response.data.user))
+            toast.success('Login SuccessFull')
+            localStorage.setItem('swToken',response.data.token);
+            localStorage.setItem('swUser', JSON.stringify(response.data.user));
             window.location.href = "/"
         } catch (error) {
-            setLoading(false)
-            toast.error(error.response.data.msg);
-            console.log(error.response.data.msg);
+            console.log("Error While Login",error)
+            if (error.response && error.response.data) {
+                console.log("error.response",error)
+                console.log(error.response.data.msg);
+                toast.error(error.response.data.msg);
+            } else {
+                console.log(error.response.data.msg);  // Fallback to the error's message if no response
+                toast.error('An unexpected error occurred');
+            }
+        
+            setLoading(false);
         }
     }
 
@@ -68,7 +76,8 @@ const Login = () => {
                                 </div>
                                 <div className="input-field">
                                     <i class="fa-solid fa-lock"></i>
-                                    <input type="password" onChange={handleChange} value={formData.password} name='password' placeholder="Enter Password" required />
+                                    <input type="
+                                    " onChange={handleChange} value={formData.password} name='password' placeholder="Enter Password" required />
                                 </div>
 
                                 <div className="">
