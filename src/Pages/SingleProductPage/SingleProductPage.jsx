@@ -79,6 +79,7 @@ const SingleProductPage = () => {
         }
 
         localStorage.setItem('swcart', JSON.stringify(cart));
+        console.log("cart Item",JSON.parse(localStorage.getItem('swcart').length))
         setShowPopup(true);
     };
 
@@ -102,6 +103,14 @@ const SingleProductPage = () => {
     if (productData.length === 0) {
         return <div>Loading...</div>;
     }
+
+    // Retrieve the swcart from localStorage
+    const swcart = JSON.parse(localStorage.getItem('swcart')) || [];
+
+    // Get the length of the swcart array
+    const cartLength = swcart.length;
+
+    console.log("Length of swcart:", cartLength);
 
     return (
         <> 
@@ -194,8 +203,10 @@ const SingleProductPage = () => {
                                         
                                         <div className="col-md-6">
                                             <div className="right">
-                                                <p>There are {quantity} items in your cart</p>
-                                                <p className='total'>TOTAL: Rs. 5,993.00</p>
+                                                {/* <p>There are {quantity} items in your cart</p> */}
+                                                <p>There are {cartLength} items in your cart</p>
+                                                
+                                                {/* <p className='total'>TOTAL: Rs. 5,993.00</p> */}
                                                 <div className="buttons">
                                                     <Link to="/categories" className="continueShopping">Continue shopping</Link>
                                                     <Link to="/cart" className="viewCart">View cart</Link>
