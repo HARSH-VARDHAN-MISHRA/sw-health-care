@@ -54,7 +54,7 @@ const Header = () => {
     }
 
     // ----- cart Items ---
-    const cartItems = JSON.parse(localStorage.getItem('swcart'));
+    const cartItems = JSON.parse(localStorage.getItem('swcart')) || [];
     const cartLength = cartItems.length;
     // console.log(cartLength)
 
