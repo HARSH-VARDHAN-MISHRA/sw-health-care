@@ -60,10 +60,12 @@ const SingleProductPage = () => {
         const cart = JSON.parse(localStorage.getItem('swcart')) || [];
         const product = {
             id: productData[0]._id,
+            categoryName: productData[0].categoryName,
             name: productData[0].productName,
             price: productData[0].discountPrice,
             quantity,
-            image: productData[0].firstImage
+            image: productData[0].firstImage,
+            sku: productData[0].sku
         };
 
         const existingProduct = cart.find(item => item.id === product.id);

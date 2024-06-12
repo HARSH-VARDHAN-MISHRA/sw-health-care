@@ -20,6 +20,9 @@ import ShippingPolicy from './Pages/ContentPages/ShippingPolicy';
 import UserProfile from './Pages/UserPage/UserProfile';
 import FinalCart from './Pages/CartPage/FinalCart';
 import OtpSignUp from './Components/Login/OtpSignUp';
+import OrderConfirm from './Pages/orderConfirm/OrderConfirm';
+import OrderFailPage from './Pages/orderConfirm/OrderFail';
+import ErrorPage from './Pages/ErrorPage/ErrorPage';
 
 function App() {
   return (
@@ -55,6 +58,10 @@ function App() {
           <Route path='/cart' element={<CartPage/>} />
 
           <Route path='/cart/checkout' element={<FinalCart/>} />
+
+          <Route path='/order-confirmed' element={<OrderConfirm />} />
+          <Route path='/order-Fail' element={<OrderFailPage />} />
+          <Route path='/*' element={<ErrorPage />} />
 
         </Routes>
 
