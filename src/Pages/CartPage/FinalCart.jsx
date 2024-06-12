@@ -61,8 +61,8 @@ const FinalCart = () => {
         try {
             const response = await axios.post('https://sw-health-care-backend.onrender.com/api/v2/payment-create', {
                 amount: Order.finalPrice,
-                Merchant: generateMerchantTransactionId(),
-                transactionId: generateMerchantTransactionId()
+                // Merchant: generateMerchantTransactionId(),
+                // transactionId: generateMerchantTransactionId()
             }, {
                 headers: {
                     Authorization: `Bearer ${token}`,
