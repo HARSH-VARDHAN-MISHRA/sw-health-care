@@ -31,6 +31,7 @@ const Login = () => {
             toast.success('Login SuccessFull')
             localStorage.setItem('swToken',response.data.token);
             localStorage.setItem('swUser', JSON.stringify(response.data.user));
+            
             window.location.href = "/"
         } catch (error) {
             console.log("Error While Login",error)

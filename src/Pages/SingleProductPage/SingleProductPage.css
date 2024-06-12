@@ -171,6 +171,14 @@
 }
 
 @media only screen and (max-width: 450px) {
+    .product-page .flex.pg-btns {
+        max-width: 100%;
+        flex-wrap: wrap;
+        margin-bottom: 1rem;
+        }
+        .product-page .flex.pg-btns button, .product-page .flex.pg-btns a {
+            width: 100%;
+        }
     .product-page .main-image img {
         height: 250px;
         object-fit: contain;

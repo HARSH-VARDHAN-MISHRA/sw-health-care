@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Login from '../../Components/Login/Login';
 
 const FinalCart = () => {
     useEffect(() => {
@@ -21,7 +22,24 @@ const FinalCart = () => {
     const FinalPrice = JSON.parse(localStorage.getItem('swFinalPrice')); // Set default value as "{}" (empty object) if no data found
 
     if (!token) {
-        window.location.href = "/login";
+        return <>
+            
+            <div className="section my-2 my-md-3">
+                <div className="container">
+                    <div className="row">
+                        <div className="col-md-8 mx-auto">
+                            <div class="alert alert-warning h6 text-center" role="alert">
+                                <div>You Are Not Loged In,</div>
+                                <div className='mt-1'>Please Login First</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <Login/>
+        </>
+        // window.location.href = "/login";
     }
 
     console.log(MakeOrder);

@@ -101,7 +101,7 @@ const SingleProductPage = () => {
     }, [name,proname]);
 
     if (productData.length === 0) {
-        return <div>Loading...</div>;
+        return <div className="container my-5">Loading...</div>;
     }
 
     // Retrieve the swcart from localStorage
