@@ -115,6 +115,7 @@ const FinalCart = () => {
                 setTimeout(() => {
                     // window.location.href = "/";
                     navigate('/')
+                    localStorage.removeItem('swcart');
                 }, 2000);
                 // window.location.href = "/order-confirmed";
             } catch (error) {

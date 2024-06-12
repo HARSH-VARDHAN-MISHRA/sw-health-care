@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 
 import './SingleProductPage.css';
 import SubHead from "../../Components/SubHead/SubHead";
@@ -9,6 +9,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const SingleProductPage = () => {
 
+    const navigate = useNavigate();
     const [showPopup, setShowPopup] = useState(false);
 
     const [quantity, setQuantity] = useState(1);
@@ -80,6 +81,15 @@ const SingleProductPage = () => {
         localStorage.setItem('swcart', JSON.stringify(cart));
         setShowPopup(true);
     };
+
+    const handleBuyNow = () =>{
+        handleAddToCart();
+
+        setTimeout(() => {
+            navigate('/cart')
+            
+        }, 2000);
+    }
 
     useEffect(() => {
         window.scrollTo({
@@ -159,7 +169,7 @@ const SingleProductPage = () => {
                                 <button className="hover-btn" onClick={handleAddToCart}>
                                     <span>ADD TO CART</span>
                                 </button>
-                                <button className="hover-btn">
+                                <button className="hover-btn" onClick={handleBuyNow}>
                                     <span>BUY NOW</span>
                                 </button>
 
