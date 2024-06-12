@@ -14,7 +14,7 @@ const Carasol = () => {
 
     const handleCaraImg= async()=>{
         try {
-            const response = await axios.get("http://localhost:9875/api/v1/get-all-main-banner");
+            const response = await axios.get("https://sw-health-care-backend.onrender.com/api/v1/get-all-main-banner");
             const resData = response.data.data;
             const filterdata = resData.filter((item)=>item.active === true);
             // console.log(filterdata)

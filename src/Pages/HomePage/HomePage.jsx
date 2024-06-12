@@ -17,7 +17,7 @@ const HomePage = () => {
 
     const handleShopBanner = async ()=>{
         try {
-            const res = await axios.get("http://localhost:9875/api/v1/get-all-sale-banner");
+            const res = await axios.get("https://sw-health-care-backend.onrender.com/api/v1/get-all-sale-banner");
             const resData = res.data.data;
             const filterdata = resData.filter((item)=>item.active === true);
             // console.log(filterdata)
@@ -30,7 +30,7 @@ const HomePage = () => {
 
     const fetchTags = async ()=>{
         try {
-            const res = await axios.get("http://localhost:9875/api/v1/get-all-tag");
+            const res = await axios.get("https://sw-health-care-backend.onrender.com/api/v1/get-all-tag");
             setTags(res.data.data)
             console.log(allTags)
         } catch (error) {
@@ -40,7 +40,7 @@ const HomePage = () => {
 
     const fetchAllProducts = async ()=>{
         try {
-            const res = await axios.get("http://localhost:9875/api/v1/get-all-product");
+            const res = await axios.get("https://sw-health-care-backend.onrender.com/api/v1/get-all-product");
             setAllProducts(res.data.data)
             console.log(allProducts)
         } catch (error) {

@@ -29,7 +29,7 @@ const ForgetPassword = () => {
         setLoading(true)
         event.preventDefault()
         try {
-            const response = await axios.post("http://localhost:9875/api/v1/Password-change-request", formData)
+            const response = await axios.post("https://sw-health-care-backend.onrender.com/api/v1/Password-change-request", formData)
             console.log(response.data);
             setLoading(false);
             toast.success(response.data.msg)
@@ -48,7 +48,7 @@ const ForgetPassword = () => {
         setLoading(true)
         otpevent.preventDefault()
         try {
-            const response = await axios.post(`http://localhost:9875/api/v1/Verify-Otp/${formData.email}/${formData.newPassword}`, formData)
+            const response = await axios.post(`https://sw-health-care-backend.onrender.com/api/v1/Verify-Otp/${formData.email}/${formData.newPassword}`, formData)
             console.log(response.data);
             setLoading(false);
             toast.success(response.data.msg)
@@ -66,7 +66,7 @@ const ForgetPassword = () => {
         setLoading(true)
         otpevent.preventDefault()
         try {
-            const response = await axios.post(`http://localhost:9875/api/v1/Resend-Otp/`, formData)
+            const response = await axios.post(`https://sw-health-care-backend.onrender.com/api/v1/Resend-Otp/`, formData)
             console.log(response.data);
             setLoading(false);
 

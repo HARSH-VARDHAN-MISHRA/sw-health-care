@@ -12,7 +12,7 @@ const ProductByCategory = () => {
 
     const handleCategory = async ()=>{
         try {
-            const res = await axios.get("http://localhost:9875/api/v1/get-all-category");
+            const res = await axios.get("https://sw-health-care-backend.onrender.com/api/v1/get-all-category");
             setCategory(res.data.data)
             console.log(allcategory)
         } catch (error) {
@@ -22,7 +22,7 @@ const ProductByCategory = () => {
 
     const handleProductData = async ()=>{
         try {
-            const response = await axios.get("http://localhost:9875/api/v1/get-all-product");
+            const response = await axios.get("https://sw-health-care-backend.onrender.com/api/v1/get-all-product");
             const resData = response.data.data;
             const filterdata = resData.filter((item)=>item.categoryName === name);
             console.log(filterdata)

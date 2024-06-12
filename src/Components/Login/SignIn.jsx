@@ -30,7 +30,7 @@ const SignIn = () => {
         setLoading(true)
         event.preventDefault();
         try {
-            const response = await axios.post('http://localhost:9875/api/v1/register',formData);
+            const response = await axios.post('https://sw-health-care-backend.onrender.com/api/v1/register',formData);
             console.log(response.data);
             setLoading(false)
             

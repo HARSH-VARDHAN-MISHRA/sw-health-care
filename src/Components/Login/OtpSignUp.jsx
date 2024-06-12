@@ -38,7 +38,7 @@ const OtpSignUp = () => {
         setLoading(true)
         try {
             console.log(formData)
-            const response = await axios.post("http://localhost:9875/api/v1/resend-sign-Otp",formData)
+            const response = await axios.post("https://sw-health-care-backend.onrender.com/api/v1/resend-sign-Otp",formData)
             console.log(response.data);
             console.log(response.data.msg)
             toast.success(response.data.msg)
@@ -59,7 +59,7 @@ const OtpSignUp = () => {
         otpevent.preventDefault()
         try {
             console.log(formData)
-            const response = await axios.post("http://localhost:9875/api/v1/Verify-sign-Otp",formData)
+            const response = await axios.post("https://sw-health-care-backend.onrender.com/api/v1/Verify-sign-Otp",formData)
             console.log("Response :",response.data);
             console.log(response.data.message);
             toast.success(response.data.message);

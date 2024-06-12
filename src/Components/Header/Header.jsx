@@ -31,7 +31,7 @@ const Header = () => {
 
     const handleFetch = async ()=>{
         try {
-            const res = await axios.get("http://localhost:9875/api/v1/get-all-category");
+            const res = await axios.get("https://sw-health-care-backend.onrender.com/api/v1/get-all-category");
             setCategory(res.data.data)
             console.log(category)
         } catch (error) {

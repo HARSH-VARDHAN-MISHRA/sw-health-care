@@ -41,7 +41,7 @@ const SingleProductPage = () => {
 
     const handleProductFetch = async ()=>{
         try {
-            const response = await axios.get("http://localhost:9875/api/v1/get-all-product");
+            const response = await axios.get("https://sw-health-care-backend.onrender.com/api/v1/get-all-product");
             const resData = response.data.data;
             const filterdata = resData.filter((item)=>item.categoryName === name && item.productName === proname);
             const filterCategorydata = resData.filter((item)=>item.categoryName === name);
