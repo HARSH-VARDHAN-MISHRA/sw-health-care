@@ -6,12 +6,18 @@ import 'react-toastify/dist/ReactToastify.css';
 import Login from '../../Components/Login/Login';
 
 const FinalCart = () => {
+    const FinalCart = localStorage.getItem('swcart') || "{}"; // Set default value as "{}" (empty object) if no data found
+    const MakeOrder = JSON.parse(FinalCart);
+    const token = localStorage.getItem("swToken");
+    const FinalPrice = JSON.parse(localStorage.getItem('swFinalPrice')); // Set default value as "{}" (empty object) if no data found
+
     useEffect(() => {
         window.scrollTo({
             top: 0,
             behavior: 'smooth'
         });
     }, []);
+
     const [Order, setOrder] = useState({
         items: MakeOrder || [],
         address: {
@@ -25,36 +31,28 @@ const FinalCart = () => {
         UserInfo: {}, // Assuming you have user info
         UserDeliveryAddress: {} // Assuming you have user delivery address
     });
+
     const navigate = useNavigate();
 
-    const FinalCart = localStorage.getItem('swcart') || "{}"; // Set default value as "{}" (empty object) if no data found
-    const MakeOrder = JSON.parse(FinalCart);
-    const token = localStorage.getItem("swToken");
-
-    const FinalPrice = JSON.parse(localStorage.getItem('swFinalPrice')); // Set default value as "{}" (empty object) if no data found
-
     if (!token) {
-        return <>
-            
-            <div className="section my-2 my-md-3">
-                <div className="container">
-                    <div className="row">
-                        <div className="col-md-8 mx-auto">
-                            <div class="alert alert-warning h6 text-center" role="alert">
-                                <div>You Are Not Loged In,</div>
-                                <div className='mt-1'>Please Login First</div>
+        return (
+            <>
+                <div className="section my-2 my-md-3">
+                    <div className="container">
+                        <div className="row">
+                            <div className="col-md-8 mx-auto">
+                                <div className="alert alert-warning h6 text-center" role="alert">
+                                    <div>You Are Not Logged In,</div>
+                                    <div className='mt-1'>Please Login First</div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-
-            <Login/>
-        </>
-        // window.location.href = "/login";
+                <Login/>
+            </>
+        );
     }
-
-   
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -78,15 +76,11 @@ const FinalCart = () => {
         try {
             const response = await axios.post('https://sw-health-care-backend.onrender.com/api/v2/payment-create', {
                 amount: Order.finalPrice,
-                // Merchant: generateMerchantTransactionId(),
-                // transactionId: generateMerchantTransactionId()
             }, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
             });
-
-            console.log(response);
 
             const redirectUrl = response.data.paydata.data.instrumentResponse.redirectInfo.url;
 
@@ -127,14 +121,12 @@ const FinalCart = () => {
 
                 console.log('Order creation response:', response.data);
                 sessionStorage.setItem('orderData', JSON.stringify(Order));
-                toast.success("Order Placed SuccessFully !!")
+                toast.success("Order Placed Successfully !!")
 
                 setTimeout(() => {
-                    // window.location.href = "/";
                     navigate('/')
                     localStorage.removeItem('swcart');
                 }, 2000);
-                // window.location.href = "/order-confirmed";
             } catch (error) {
                 console.error('Order creation Error:', error);
             }
@@ -143,10 +135,10 @@ const FinalCart = () => {
 
     return (
         <>
-        <ToastContainer />
+            <ToastContainer />
             <section className="bread">
                 <div className="container">
-                    <nav aria-label="breadcrumb ">
+                    <nav aria-label="breadcrumb">
                         <h2>Order Summary</h2>
                         <ol className="breadcrumb">
                             <li className="breadcrumb-item"><Link to="/">Home</Link></li>
