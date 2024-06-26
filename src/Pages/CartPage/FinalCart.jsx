@@ -12,7 +12,19 @@ const FinalCart = () => {
             behavior: 'smooth'
         });
     }, []);
-
+    const [Order, setOrder] = useState({
+        items: MakeOrder || [],
+        address: {
+            street: "",
+            city: "",
+            state: "",
+            pincode: ""
+        },
+        PaymentMode: "",
+        finalPrice: FinalPrice || 0,
+        UserInfo: {}, // Assuming you have user info
+        UserDeliveryAddress: {} // Assuming you have user delivery address
+    });
     const navigate = useNavigate();
 
     const FinalCart = localStorage.getItem('swcart') || "{}"; // Set default value as "{}" (empty object) if no data found
@@ -42,20 +54,7 @@ const FinalCart = () => {
         // window.location.href = "/login";
     }
 
-    console.log(MakeOrder);
-    const [Order, setOrder] = useState({
-        items: MakeOrder || [],
-        address: {
-            street: "",
-            city: "",
-            state: "",
-            pincode: ""
-        },
-        PaymentMode: "",
-        finalPrice: FinalPrice || 0,
-        UserInfo: {}, // Assuming you have user info
-        UserDeliveryAddress: {} // Assuming you have user delivery address
-    });
+   
 
     const handleChange = (e) => {
         const { name, value } = e.target;
