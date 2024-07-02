@@ -10,10 +10,10 @@ const OrderFailPage = () => {
         <div className="row">
           <div className="col-md-6  mx-auto">
             <div className="container py-5 d-flex flex-column justify-content-center align-items-center min-vh-60 bg-light">
-              <h1 className="text-danger font-weight-bold mb-4">Order Failed</h1>
+              <h1 className="text-warning font-weight-bold mb-4">Order Failed</h1>
               <p className="text-lg text-center text-muted mb-8">Sorry, your order could not be processed at this time.</p>
               <img src={Fail} alt="Order Fail" className="w-50 h-auto mb-8" />
-              <Link to="/" className="text-primary h5">Return to Homepage</Link>
+              <Link to="/" className="text-success h5">Return to Homepage</Link>
             </div>
 
           </div>

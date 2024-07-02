@@ -2,12 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './CartPage.css';
 import emptyCart from './empty-cart.png';
+import axios from 'axios';
 
 const CartPage = () => {
     const [cart, setCart] = useState([]);
     const [coupon, setCoupon] = useState('');
     const [discount, setDiscount] = useState(0);
     const [couponMessage, setCouponMessage] = useState('');
+    const [LastPrice, setLastprice] = useState(0);
 
     useEffect(() => {
         const storedCart = JSON.parse(localStorage.getItem('swcart')) || [];
@@ -21,6 +23,7 @@ const CartPage = () => {
     useEffect(() => {
         const subtotal = calculateSubtotal();
         const total = calculateTotal();
+        setLastprice(total);  // Set LastPrice to the total initially
         localStorage.setItem('swFinalPrice', total.toFixed(2));
         localStorage.setItem('swDiscountPrice', discount.toFixed(2));
         localStorage.setItem('swSubtotal', subtotal.toFixed(2));
@@ -49,14 +52,41 @@ const CartPage = () => {
         localStorage.setItem('swcart', JSON.stringify(newCart));
     };
 
-    const applyCoupon = () => {
-        if (coupon === 'SWCODE01') {
-            setDiscount(0.1 * calculateSubtotal());
+    const [formData, setFormData] = useState({
+        CouponeCode: '',
+        orderTotal: 0
+    });
+
+    useEffect(() => {
+        setFormData(prevState => ({
+            ...prevState,
+            orderTotal: calculateTotal()
+        }));
+    }, [cart, discount]);
+
+    const applyCoupon = async () => {
+        try {
+            const res = await axios.post('https://sw-health-care-backend.onrender.com/api/v1/apply-vouchers', formData);
+            const RoundTotal = Math.round(res.data.data.discountedTotal);
+            setLastprice(RoundTotal);
+            setDiscount(calculateSubtotal() - RoundTotal);
             setCouponMessage('Coupon applied successfully!');
-        } else {
-            setDiscount(0);
+        } catch (error) {
+            console.log(error);
             setCouponMessage('Invalid coupon code');
+            setLastprice(calculateSubtotal() - discount); // Show total price without discount
+            setDiscount(0); // Reset discount if the coupon code is invalid
         }
+    };
+
+    const handleChange = (e) => {
+        setFormData(prevState => ({
+            ...prevState,
+            CouponeCode: e.target.value
+        }));
+        setCouponMessage(''); // Clear coupon message when user starts typing a new code
+        setLastprice(calculateTotal()); // Reset LastPrice to original total when user types a new code
+        setDiscount(0); // Reset discount
     };
 
     return (
@@ -115,8 +145,9 @@ const CartPage = () => {
                                         type="text"
                                         className="form-control"
                                         placeholder="Coupon Code"
-                                        value={coupon}
-                                        onChange={(e) => setCoupon(e.target.value)}
+                                        value={formData.CouponeCode}
+                                        onChange={handleChange}
+                                        name='CouponeCode'
                                     />
                                     <button className="btn btn-primary mt-2" onClick={applyCoupon}>Apply Coupon</button>
                                     {couponMessage && (
@@ -135,7 +166,7 @@ const CartPage = () => {
                                 </div>
                                 <div className="total d-flex justify-content-between mt-2">
                                     <strong>Total</strong>
-                                    <strong>₹{calculateTotal().toFixed(2)}</strong>
+                                    <strong>₹{LastPrice.toFixed(2)}</strong>
                                 </div>
                                 <Link to="/cart/checkout" className="btn btn-success w-100 mt-3">Proceed to Checkout</Link>
                             </div>

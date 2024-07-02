@@ -99,7 +99,17 @@ const Header = () => {
                     </div>
 
 
-                    <div className="search-bar">
+                    <div className="nav-links">
+                        <ul>
+                            <li><Link to="/">Home</Link></li>
+                            <li><Link to="/about-us">Our Story</Link></li>
+                            <li><Link to="/categories">Our Products</Link></li>
+                            <li><Link to="/">Catalogue</Link></li>
+                            <li><Link to="/contact">Contact Us</Link></li>
+                        </ul>
+                    </div>
+
+                    {/* <div className="search-bar">
                         <input type="text"
                             placeholder="Search for Cookware Sets"
                             value={searchInput}
@@ -107,7 +117,7 @@ const Header = () => {
                             onKeyDown={handleKeyDown}
                         />
                         <i class="fa-solid fa-magnifying-glass"></i>
-                    </div>
+                    </div> */}
 
                     <div className="icons">
                         {token ? (
@@ -150,14 +160,20 @@ const Header = () => {
                     <ul>
 
                         <li><Link onClick={handleCloseBar} to="/">Home <i class="fa-solid fa-arrow-right"></i></Link></li>
-                        <li><Link onClick={handleCloseBar} to="/categories">Shop By Categories <i class="fa-solid fa-arrow-right"></i></Link></li>
+                        <li><Link onClick={handleCloseBar} to="/about-us">Our Story <i class="fa-solid fa-arrow-right"></i> </Link></li>
+                        <li><Link onClick={handleCloseBar} to="/categories">Our Products <i class="fa-solid fa-arrow-right"></i> </Link></li>
+                        <li><Link onClick={handleCloseBar} to="/">Catalogue <i class="fa-solid fa-arrow-right"></i> </Link></li>
+                        <li><Link onClick={handleCloseBar} to="/contact">Contact Us <i class="fa-solid fa-arrow-right"></i> </Link></li>
 
-                        {category && category.map((item, index) => (
+                        {/* <li><Link onClick={handleCloseBar} to="/categories">Shop By Categories <i class="fa-solid fa-arrow-right"></i></Link></li> */}
+                        {/* {category && category.map((item, index) => (
                             <li key={index}><Link onClick={handleCloseBar} to={`/category/${item.categoryName}`}>{item.categoryName} <i class="fa-solid fa-arrow-right"></i></Link></li>
-                        ))}
+                        ))} */}
+                        
+                            
                     </ul>
 
-                    <div class="social-icons d-none">
+                    <div class="social-icons">
                         <a href="#"><i class="fab fa-facebook-f"></i></a>
                         <a href="#"><i class="fab fa-twitter"></i></a>
                         <a href="#"><i class="fab fa-instagram"></i></a>

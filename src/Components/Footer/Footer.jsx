@@ -1,5 +1,5 @@
 import React from 'react'
-import logo from '../../Assets/logo.png'
+import logo from '../../Assets/logo1.png'
 import './Footer.css'
 import { Link } from 'react-router-dom'
 
@@ -53,6 +53,13 @@ const Footer = () => {
             </div>
           </div>
         </footer>
+
+        <div className="side-icons">
+          <div className="sin"><a href="https://www.instagram.com/" target="_blank" className="icon insta"><i className="fa-brands fa-instagram"></i></a></div>
+          <div className="sin"><a href="https://www.facebook.com/" target="_blank" className="icon facebook"><i className="fa-brands fa-square-facebook"></i></a></div>
+          <div className="sin"><a href="https://youtube.com/" target="_blank" className="icon youtube"><i className="fa-brands fa-youtube"></i></a></div>
+          <div className="sin what"><a href="https://api.whatsapp.com/send?phone=919870460015" target="_blank" className="icon whatsapp"><i className="fa-brands fa-whatsapp"></i></a></div>
+        </div>
     </>
   )
 }

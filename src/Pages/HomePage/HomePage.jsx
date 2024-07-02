@@ -7,7 +7,8 @@ import AllCategory from '../../Components/AllCategory/AllCategory'
 import SubHead from '../../Components/SubHead/SubHead'
 import MostSelling from '../../Components/MostSelling/MostSelling'
 import About from '../../Components/About/About'
-import Payment from '../../Components/Payment/Payment'
+// import Payment from '../../Components/Payment/Payment'
+import Testimonial from '../../Components/Testimonial/Testimonial'
 
 const HomePage = () => {
 
@@ -69,7 +70,7 @@ const HomePage = () => {
             <SubHead title="Our Categories" />
             <AllCategory/>
 
-            {allTags && allTags.map((tags,tagIndex)=>(
+            {/* {allTags && allTags.map((tags,tagIndex)=>(
                 <>
                 <section key={tagIndex}>
                     <SubHead title={tags.title} />
@@ -104,7 +105,7 @@ const HomePage = () => {
                     
                 </>
                 
-            ))}
+            ))} */}
 
             <section className="banners">
                 <div className="container">
@@ -119,7 +120,8 @@ const HomePage = () => {
                 </div>
             </section>
 
-            <Payment />
+            <Testimonial/>
+            {/* <Payment /> */}
         </>
     )
 }

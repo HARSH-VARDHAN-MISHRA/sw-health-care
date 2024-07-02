@@ -26,3 +26,71 @@ footer .copyright a{
     color: var(--color-navblue);
     text-decoration: underline !important;
 }
+
+
+
+
+/* --------------------------------------  */
+.side-icons {
+    position: fixed;
+    right: 2%;
+    top: 35%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 500;
+    gap: 1rem;
+}
+.side-icons .sin{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.3rem;
+    color: white;
+    font-size: 1.3rem;
+    background: var(--color-navblue);
+    height: 2.8rem;
+    width: 2.8rem;
+    border-radius: 50%;
+}
+.side-icons .sin a{
+    color: white;
+    position: relative;
+}
+
+.side-icons .sin a::after{
+    position: absolute;
+    content: "Insta";
+    color: white;
+    padding: 0.1rem 0.5rem ;
+    background: var(--color-navblue);
+    right: -1000%;
+    top: 5%;
+    font-size: 1rem;
+    border-radius: 5px;
+    border-bottom-right-radius: 0rem;
+    transition: var(--transition-3);
+}
+.side-icons .sin a.insta::after{
+    content:"Instagram"
+}
+.side-icons .sin a.facebook::after{
+    content:"Facebook"
+}
+.side-icons .sin a.youtube::after{
+    content:"Youtube"
+}
+.side-icons .sin a.whatsapp::after{
+    content:"Whatsapp"
+}
+.side-icons .sin a:hover{
+    opacity: 0.9;
+}
+.side-icons .sin a:hover::after{
+    right: 200%;
+}
+@media only screen and (max-width: 500px){
+    /* .side-icons .sin{
+        display: none;
+    } */
+}

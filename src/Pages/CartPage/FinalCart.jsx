@@ -24,12 +24,13 @@ const FinalCart = () => {
             street: "",
             city: "",
             state: "",
-            pincode: ""
+            pincode: "",
+            HouseNo: "",
+            landMark: ""
+
         },
         PaymentMode: "",
         finalPrice: FinalPrice || 0,
-        UserInfo: {}, // Assuming you have user info
-        UserDeliveryAddress: {} // Assuming you have user delivery address
     });
 
     const navigate = useNavigate();
@@ -49,14 +50,14 @@ const FinalCart = () => {
                         </div>
                     </div>
                 </div>
-                <Login/>
+                <Login />
             </>
         );
     }
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-        if (name === 'street' || name === 'city' || name === 'state' || name === 'pincode') {
+        if (name === 'street' || name === 'city' || name === 'state' || name === 'pincode' || name === 'HouseNo'|| name === 'landMark') {
             setOrder(prevOrder => ({
                 ...prevOrder,
                 address: {
@@ -107,11 +108,15 @@ const FinalCart = () => {
                     },
                 });
 
+                const redirectUrl = response.data.payData.data.instrumentResponse.redirectInfo.url;
+                window.location.href = redirectUrl;
+
                 console.log('Order creation response:', response.data);
             } catch (error) {
                 console.error('Order creation Error:', error);
             }
         } else {
+            console.log(Order)
             try {
                 const response = await axios.post('https://sw-health-care-backend.onrender.com/api/v1/create-order', Order, {
                     headers: {
@@ -120,12 +125,14 @@ const FinalCart = () => {
                 });
 
                 console.log('Order creation response:', response.data);
-                sessionStorage.setItem('orderData', JSON.stringify(Order));
+                // sessionStorage.setItem('orderData', JSON.stringify(Order));
                 toast.success("Order Placed Successfully !!")
 
                 setTimeout(() => {
-                    navigate('/')
+                    navigate('/order-confirmed')
                     localStorage.removeItem('swcart');
+                    localStorage.removeItem('swSubtotal');
+                    localStorage.removeItem('swFinalPrice');
                 }, 2000);
             } catch (error) {
                 console.error('Order creation Error:', error);
@@ -192,6 +199,14 @@ const FinalCart = () => {
                                     <input onChange={handleChange} type="text" required={true} id="state" name="state" value={Order.address.state} className="form-control" placeholder="Enter Your State" />
                                 </div>
                                 <div className="form-group mt-3">
+                                    <label htmlFor="HouseNo" className="font-weight-bold">House No</label>
+                                    <input onChange={handleChange} type="text" required={true} id="HouseNo" name="HouseNo" value={Order.address.HouseNo} className="form-control" placeholder="Enter Your House No" />
+                                </div>
+                                <div className="form-group mt-3">
+                                    <label htmlFor="LandMark" className="font-weight-bold">LandMark</label>
+                                    <input onChange={handleChange} type="text" required={true} id="landMark" name="landMark" value={Order.address.landMark} className="form-control" placeholder="Enter Your Landmark" />
+                                </div>
+                                <div className="form-group mt-3">
                                     <label htmlFor="pincode" className="font-weight-bold">Pincode</label>
                                     <input onChange={handleChange} type="text" required={true} id="pincode" value={Order.address.pincode} name="pincode" className="form-control" placeholder="Pincode" />
                                 </div>
@@ -200,7 +215,7 @@ const FinalCart = () => {
                                     <select onChange={handleChange} value={Order.PaymentMode} name="PaymentMode" className="form-control">
                                         <option value="">Select Payment Method</option>
                                         <option value="COD">COD</option>
-                                        <option disabled value="Online">Online</option>
+                                        <option value="Online">Online</option>
                                     </select>
                                 </div>
 

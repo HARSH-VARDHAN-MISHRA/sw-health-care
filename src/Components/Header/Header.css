@@ -1,8 +1,9 @@
 header{
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.06);
     z-index: 50;
-    background: white;
+    background: var(--color-navblue);
     transition: var(--transition-3);
+    border-bottom: 1px solid whitesmoke;
 }
 header.fixed-top{
     border-bottom: 1px solid var(--color-main);
@@ -22,12 +23,12 @@ header .header-navbar{
 }
 
 header .header-navbar .logo img{
-    height: 70px;
-    width: auto;
+    /* height: 70px; */
+    width: 180px;
     object-fit: contain;
 }
 
-header .search-bar{
+/* header .search-bar{
     border: 1px solid var(--color-black-light);
     border: 1px solid var(--color-main);
     display: flex;
@@ -47,9 +48,12 @@ header .search-bar i{
     width: 5%;
     cursor: pointer;
     color: var(--color-main);
-}
+} */
+
+
 header .icons .cre{
-    color: var(--color-main);
+    /* color: var(--color-main); */
+    color: white;
     font-weight: 500;
 }
 header .icons {
@@ -68,14 +72,14 @@ header .icons .icon{
 header .icons .icon i{
     font-size: 1.5rem;
     cursor: pointer;
-    color: var(--color-main-light);
+    color: white;
 }
 header .icons .icon .cart-numb{
     position: absolute;
     top: -20%;
     left: 50%;
     color: white;
-    background: var(--color-main);
+    background: var(--color-navblue);
     border: 1px solid white;
     display: flex;
     align-items: center;
@@ -220,19 +224,28 @@ header .icons .icon .cart-numb{
     width: 2.2rem;
 }
 
-@media only screen and (max-width: 800px){
-    header{
-        background: var(--bg-white);
+
+/* --- Navbar Responsive ---  */
+header .icons .bar {
+    display: none;
+}
+@media only screen and (max-width: 980px){
+    header .icons .bar {
+        display: block;
     }
+    header .nav-links{
+        display: none;
+    }
+}
+
+
+
+
+
+@media only screen and (max-width: 800px){
     header .header-navbar {
         padding: 1rem 2rem;
         flex-wrap: wrap;
-    }
-    header .search-bar {
-        flex-grow: 1;
-        order: 2;
-        flex-basis: 100%;
-        margin-top: 1rem;
     }
     .header-navbar .logo,
     .header-navbar .icons{
@@ -241,15 +254,12 @@ header .icons .icon .cart-numb{
     .header-navbar .icons{
         justify-content: end;
     }
+
 }
-@media only screen and (max-width: 580px){
-    header .header-navbar .logo img {
-        height: 50px;
-    }
-}
+
 @media only screen and (max-width: 450px){
     header .header-navbar .logo img {
-        height: 2.2rem;
+        width: 100%;
     }
     .header-navbar .logo{
         flex-basis: 38%;
@@ -287,7 +297,20 @@ header .icons .icon .cart-numb{
 
 
 
-
+header .nav-links ul{
+    display: flex;
+    margin-bottom: 0rem;
+    gap: 1rem;
+    padding-left: 0rem;
+}
+header .nav-links ul li a{
+    color: white;
+    text-transform: uppercase;
+    transition: var(--transition-3);
+}
+header .nav-links ul li a:hover{
+    color: var(--color-main);
+}
 
 
 

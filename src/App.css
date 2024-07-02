@@ -4,3 +4,64 @@
 .not-allowed{
     cursor: not-allowed;
 }
+
+/* ------ View More Container ---  */
+
+.viewMoreBtn {
+    padding: 0.8em 1.2em;
+    background-color: transparent;
+    border-radius: .3em;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    transition: .5s;
+    font-weight: 400;
+    font-size: 17px;
+    border: 1px solid;
+    font-family: inherit;
+    text-transform: uppercase;
+    color: var(--color-navblue);
+    z-index: 1;
+    display: inline-block;
+    width: max-content;
+    text-decoration: none;
+}
+
+.viewMoreBtn::before,
+.viewMoreBtn::after {
+    content: '';
+    display: block;
+    width: 50px;
+    height: 50px;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    border-radius: 50%;
+    z-index: -1;
+    background-color: var(--color-navblue);
+    transition: 1s ease;
+}
+
+.viewMoreBtn::before {
+    top: -1em;
+    left: -1em;
+}
+
+.viewMoreBtn::after {
+    left: calc(100% + 1em);
+    top: calc(100% + 1em);
+}
+
+.viewMoreBtn:hover::before,
+.viewMoreBtn:hover::after {
+    height: 410px;
+    width: 410px;
+}
+
+.viewMoreBtn:hover {
+    /* color: rgb(10, 25, 30); */
+    color: white;
+}
+
+.viewMoreBtn:active {
+    filter: brightness(.8);
+}

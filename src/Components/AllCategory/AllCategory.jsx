@@ -42,7 +42,7 @@ const AllCategory = () => {
 
                 <div className="viewAllbtn">
                     {allcategory.length > maxDisplay && (
-                        <Link to="/categories" className="view-more">
+                        <Link to="/categories" className="viewMoreBtn px-5">
                             View More
                         </Link>
                     )}

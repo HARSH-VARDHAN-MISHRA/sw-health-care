@@ -1,30 +1,31 @@
 import React, { useEffect, useState } from 'react'
 import './ProductsPage.css'
-import { Link, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import axios from 'axios'
-
+import noImages from './7069619_3304446.jpg'
 const ProductByCategory = () => {
     const { name } = useParams();
 
-    const [productData,setProductData] = useState([]);
-    const [allcategory,setCategory] = useState([]); 
+    const [productData, setProductData] = useState([]);
+    const [allcategory, setCategory] = useState([]);
+    const navigate = useNavigate();
 
 
-    const handleCategory = async ()=>{
+    const handleCategory = async () => {
         try {
             const res = await axios.get("https://sw-health-care-backend.onrender.com/api/v1/get-all-category");
             setCategory(res.data.data)
             console.log(allcategory)
         } catch (error) {
-            console.log("Something Issue to fetch categories : ",error)
+            console.log("Something Issue to fetch categories : ", error)
         }
     }
 
-    const handleProductData = async ()=>{
+    const handleProductData = async () => {
         try {
             const response = await axios.get("https://sw-health-care-backend.onrender.com/api/v1/get-all-product");
             const resData = response.data.data;
-            const filterdata = resData.filter((item)=>item.categoryName === name);
+            const filterdata = resData.filter((item) => item.categoryName === name);
             console.log(filterdata)
             setProductData(filterdata)
             console.log(productData)
@@ -33,7 +34,7 @@ const ProductByCategory = () => {
         }
     }
 
-    
+
     const [displayCount, setDisplayCount] = useState(8);
     const [loading, setLoading] = useState(false);
 
@@ -44,6 +45,15 @@ const ProductByCategory = () => {
             setLoading(false);
         }, 2000);
     }
+
+
+    // --- Select Option --- 
+    const handleSelectionChange = (event) => {
+        const selectedCategory = event.target.value;
+        if (selectedCategory !== 'Choose your product') {
+            navigate(`/category/${selectedCategory}`);
+        }
+    };
 
     useEffect(() => {
         window.scrollTo({
@@ -79,7 +89,7 @@ const ProductByCategory = () => {
                                 <div class="accordion-item">
                                     <h2 class="accordion-header" id="panelsStayOpen-headingOne">
                                         <div class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
-                                            Products
+                                        Categories
                                         </div>
                                     </h2>
 
@@ -96,7 +106,7 @@ const ProductByCategory = () => {
                                     </div>
 
                                 </div>
-                                <div class="accordion-item">
+                                {/* <div class="accordion-item">
                                     <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
                                         <div class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
                                             Price
@@ -107,8 +117,8 @@ const ProductByCategory = () => {
 
                                         </div>
                                     </div>
-                                </div>
-                                <div class="accordion-item">
+                                </div> */}
+                                {/* <div class="accordion-item">
                                     <h2 class="accordion-header" id="panelsStayOpen-headingThree">
                                         <div class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
                                             AVAILABILITY
@@ -122,7 +132,7 @@ const ProductByCategory = () => {
                                             </ul>
                                         </div>
                                     </div>
-                                </div>
+                                </div> */}
                             </div>
 
                         </div>
@@ -134,40 +144,58 @@ const ProductByCategory = () => {
                             <div className="head-ban flex mb-4">
                                 <h3>{name} ({productData.length})</h3>
                                 <div className="grids-btns">
-                                    <select name="selection" id="selection">
-                                        <option>Featured</option>
+                                    <select name="selection" id="selection" onChange={handleSelectionChange}>
+                                        <option >Choose your Category</option>
+                                        {allcategory.map((category, index) => (
+                                            <option value={category.categoryName}>{category.categoryName}</option>
+                                        ))}
+
+                                    </select>
+                                </div>
+                            </div>
+                            {/* <option>Featured</option>
                                         <option>Best Selling</option>
                                         <option>Price Ascending</option>
                                         <option>Price Descending</option>
                                         <option>Name Ascending</option>
                                         <option>Name Descending</option>
                                         <option>Date Ascending</option>
-                                        <option>Date Descending</option>
-                                    </select>
-                                </div>
-                            </div>
+                                        <option>Date Descending</option> */}
 
-                            <div className="product-grid grid-3">
 
-                                {productData.slice(0,displayCount).map((product, index) => (
-                                    <Link to={`/category/${product.categoryName}/${product.productName}`} className="single-pro" key={index}>
-                                        <div className="img">
-                                            <img src={product.firstImage} alt={product.productName} />
-                                            <div className="offpercent">{product.discountPercentage}% off</div>
-                                            <div className="tag">{product.tag}</div>
-                                        </div>
-                                        <div className="content">
-                                            <div className="pro-name">{product.productName}</div>
-
-                                            <div className="price">
-                                                <h4>₹{product.discountPrice}</h4>
-                                                <del>₹{product.price}</del>
+                            {productData.length > 0 ? (
+                                <div className="product-grid grid-3">
+                                    {productData.slice(0, displayCount).map((product, index) => (
+                                        <Link to={`/category/${product.categoryName}/${product.productName}`} className="single-pro" key={index}>
+                                            <div className="img">
+                                                <img src={product.firstImage} alt={product.productName} />
+                                                <div className="offpercent">{product.discountPercentage}% off</div>
+                                                <div className="tag">{product.tag}</div>
                                             </div>
-                                        </div>
-                                    </Link>
-                                ))}
+                                            <div className="content">
+                                                <div className="pro-name">{product.productName}</div>
+                                                <div className="price">
+                                                    <h4>₹{product.discountPrice}</h4>
+                                                    <del>₹{product.price}</del>
+                                                </div>
+                                            </div>
+                                        </Link>
+                                    ))}
+                                </div>
+                            ) : (
+                                <div className='row'>
+                                    <div className="col-md-8 mx-auto">
+                                        <img src={noImages} loading='lazy' className='img-fluid' alt="" />
 
-                            </div>
+                                    </div>
+                                </div>
+                            )}
+
+
+
+
+
+
 
                             {loading && (
                                 <div className="loader">
