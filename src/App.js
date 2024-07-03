@@ -23,6 +23,7 @@ import OtpSignUp from './Components/Login/OtpSignUp';
 import OrderConfirm from './Pages/orderConfirm/OrderConfirm';
 import OrderFailPage from './Pages/orderConfirm/OrderFail';
 import ErrorPage from './Pages/ErrorPage/ErrorPage';
+import AboutPage from './Pages/AboutPage/AboutPage';
 
 function App() {
   return (
@@ -41,6 +42,7 @@ function App() {
 
           {/* Pages ---  */}
           <Route path='/contact' element={<ContactPage/>} />
+          <Route path='/about-us' element={<AboutPage/>} />
 
           <Route path='/terms-condition' element={<TermCondition/>} />
           <Route path='/privacy-policy' element={<PrivacyPolicy/>} />
