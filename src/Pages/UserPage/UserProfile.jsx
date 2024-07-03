@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import MetaTag from '../../Components/Meta/MetaTag';
 
 const UserProfile = () => {
     const Token = localStorage.getItem('swToken')
@@ -17,6 +18,14 @@ const UserProfile = () => {
         <>
             {Token ? (
                 <>
+                {user.name ? <>
+                    <MetaTag
+                        title={`${user.name}'s Profile - SW Health Care Private Limited`}
+                        description={`Explore ${user.name}'s profile at SW Health Care Private Limited. Learn more about their preferences, orders, and activities.`}
+                        keyword={`${user.name}, user profile, SW Health Care, healthcare products`}
+                    />
+                
+                </> : ""}
                     <section class="bread">
                         <div class="container">
                             <nav aria-label="breadcrumb ">

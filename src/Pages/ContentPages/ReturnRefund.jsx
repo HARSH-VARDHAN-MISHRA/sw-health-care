@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import MetaTag from '../../Components/Meta/MetaTag';
 
 const ReturnRefund = () => {
     useEffect(() => {
@@ -10,6 +11,11 @@ const ReturnRefund = () => {
     }, [])
     return (
         <>
+        <MetaTag
+        title="Return and Refund Policy - SW Health Care Private Limited"
+        description="Understand the return and refund policy of SW Health Care Private Limited. Find out about our return process, eligibility, and refund conditions."
+        keyword="return policy, refund policy, SW Health Care, return process, refund conditions"
+      />
             <section class="bread">
                 <div class="container">
                     <nav aria-label="breadcrumb ">

@@ -6,6 +6,7 @@ import SubHead from "../../Components/SubHead/SubHead";
 import axios from "axios";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import MetaTag from "../../Components/Meta/MetaTag";
 
 const SingleProductPage = () => {
 
@@ -115,6 +116,15 @@ const SingleProductPage = () => {
     return (
         <> 
             <ToastContainer />
+
+            {productData[0].productName ? <>
+                <MetaTag
+                    title={`${productData[0].productName} - SW Health Care Private Limited`}
+                    description={`Discover ${productData[0].productName} at SW Health Care Private Limited. Learn more about its features, benefits, and how it can meet your healthcare needs.`}
+                    keyword={`${productData[0].productName}, ${productData[0].productName} details, SW Health Care, medical equipment, healthcare products`}
+                />
+            
+            </> : ""}
 
             <section className="bread">
                 <div className="container">

@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import MetaTag from '../../Components/Meta/MetaTag';
 
 const TermCondition = () => {
     useEffect(() => {
@@ -10,6 +11,11 @@ const TermCondition = () => {
     }, [])
     return (
         <>
+            <MetaTag
+                title="Terms and Conditions - SW Health Care Private Limited"
+                description="Read the terms and conditions of SW Health Care Private Limited. Understand our policies, regulations, and guidelines."
+                keyword="terms and conditions, SW Health Care, policies, regulations"
+            />
             <section class="bread">
                 <div class="container">
                     <nav aria-label="breadcrumb ">

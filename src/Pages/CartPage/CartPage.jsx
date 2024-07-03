@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import './CartPage.css';
 import emptyCart from './empty-cart.png';
 import axios from 'axios';
+import MetaTag from '../../Components/Meta/MetaTag';
 
 const CartPage = () => {
     const [cart, setCart] = useState([]);
@@ -91,6 +92,11 @@ const CartPage = () => {
 
     return (
         <>
+        <MetaTag
+            title="Your Cart - SW Health Care Private Limited"
+            description="View and manage items in your cart at SW Health Care Private Limited. Add, remove, or modify items before checkout."
+            keyword="cart, shopping cart, SW Health Care, manage cart, checkout"
+        />
             <section className="bread">
                 <div className="container">
                     <nav aria-label="breadcrumb">

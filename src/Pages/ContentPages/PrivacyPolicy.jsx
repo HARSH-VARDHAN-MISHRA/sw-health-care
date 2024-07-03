@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import MetaTag from '../../Components/Meta/MetaTag';
 
 const PrivacyPolicy = () => {
     useEffect(() => {
@@ -10,6 +11,11 @@ const PrivacyPolicy = () => {
     }, [])
   return (
     <>
+    <MetaTag 
+        title="Privacy Policy - SW Health Care Private Limited"
+        description="Read the privacy policy of SW Health Care Private Limited. Learn how we collect, use, and protect your personal information."
+        keyword="privacy policy, data protection, SW Health Care, personal information"
+      />
         <section class="bread">
                 <div class="container">
                     <nav aria-label="breadcrumb ">

@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios';
 import { useState } from 'react';
+import MetaTag from '../../Components/Meta/MetaTag';
 
 
 const AllCategoryPage = () => {
@@ -27,6 +28,11 @@ const AllCategoryPage = () => {
     }, []);
   return (
     <>
+        <MetaTag 
+            title="Our Categories - SW Health Care Private Limited"
+            description="Explore a wide range of healthcare products and medical equipment from SW Health Care Private Limited. Find the best solutions for your health and wellness needs."
+            keyword="Healthcare Products, Medical Equipment, SW Health Care, Compressor Nebulizer, Hot Water Bottle, Digital Thermometer, Surgical Tape, Latex Gloves, Pulse Oximeter, Plastic Lancet, Medical Mask, Steam Vaporizer, Hospital Bedpan, Aluminium Stethoscope, Manual Wheelchairs"
+        />
         <section class="bread">
             <div class="container">
                 <nav aria-label="breadcrumb ">

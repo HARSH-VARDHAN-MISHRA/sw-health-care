@@ -3,6 +3,7 @@ import './ProductsPage.css'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import axios from 'axios'
 import noImages from './7069619_3304446.jpg'
+import MetaTag from '../../Components/Meta/MetaTag'
 const ProductByCategory = () => {
     const { name } = useParams();
 
@@ -65,6 +66,13 @@ const ProductByCategory = () => {
     }, [name])
     return (
         <>
+        {name ? (<>
+            <MetaTag 
+                title={`${name} - SW Health Care Private Limited`}
+                description={`Explore ${name} products offered by SW Health Care Private Limited. Find high-quality ${name} and more to meet your healthcare needs.`}
+                keyword={`${name}, ${name} products, SW Health Care, medical equipment, healthcare products`}
+            />
+        </>) : ""}
             <section class="bread mb-5">
                 <div class="container">
                     <nav aria-label="breadcrumb ">

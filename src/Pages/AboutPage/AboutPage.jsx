@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import aboutImg from '../../Assets/about.webp'
 import { Link } from 'react-router-dom'
 import Faq from '../../Components/Faq/Faq';
+import MetaTag from '../../Components/Meta/MetaTag';
 
 const AboutPage = () => {
   useEffect(() => {
@@ -12,6 +13,12 @@ const AboutPage = () => {
   }, []);
   return (
     <>
+      <MetaTag  
+        title="About Us - SW Health Care Private Limited"
+        description="Learn more about SW Health Care Private Limited, your trusted source for quality medical equipment and healthcare products. We are committed to enhancing health and wellness through reliable and innovative solutions."
+        keyword="About Us, SW Health Care, Medical Equipment, Health Care Products, Quality Medical Equipment, Innovative Health Care Solutions" 
+      />
+
       <section className="bread">
         <div className="container">
           <nav aria-label="breadcrumb">
@@ -23,6 +30,7 @@ const AboutPage = () => {
           </nav>
         </div>
       </section>
+      
       <section className="about my-5">
         <div className="container">
           <div className="row">

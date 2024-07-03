@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import MetaTag from '../../Components/Meta/MetaTag';
 
 const ShippingPolicy = () => {
     useEffect(() => {
@@ -10,6 +11,11 @@ const ShippingPolicy = () => {
     }, [])
   return (
     <>
+    <MetaTag
+        title="Shipping Policy - SW Health Care Private Limited"
+        description="Learn about the shipping policy of SW Health Care Private Limited. Read about our shipping methods, delivery times, and terms."
+        keyword="shipping policy, SW Health Care, delivery methods, shipping terms"
+      />
         <section class="bread">
             <div class="container">
                 <nav aria-label="breadcrumb ">

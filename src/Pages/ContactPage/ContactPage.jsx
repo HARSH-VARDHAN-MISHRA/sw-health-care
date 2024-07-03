@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import './ContactPage.css'
+import MetaTag from '../../Components/Meta/MetaTag';
 
 const ContactPage = () => {
     useEffect(() => {
@@ -11,6 +12,12 @@ const ContactPage = () => {
     }, []);
     return (
         <>
+            <MetaTag
+                title="Contact Us - SW Health Care Private Limited"
+                description="Get in touch with SW Health Care Private Limited. Find our contact details, address, and reach out to us for any queries or information regarding our healthcare products and services."
+                keyword="Contact Us, SW Health Care, Medical Equipment, Health Care Products, Customer Support, Contact Information, SW Health Care Private Limited" 
+            />
+
             <section class="bread">
                 <div class="container">
                     <nav aria-label="breadcrumb ">
