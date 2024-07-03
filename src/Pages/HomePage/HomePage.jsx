@@ -70,7 +70,7 @@ const HomePage = () => {
             <SubHead title="Our Categories" />
             <AllCategory/>
 
-            {/* {allTags && allTags.map((tags,tagIndex)=>(
+            {allTags && allTags.map((tags,tagIndex)=>(
                 <>
                 <section key={tagIndex}>
                     <SubHead title={tags.title} />
@@ -105,7 +105,7 @@ const HomePage = () => {
                     
                 </>
                 
-            ))} */}
+            ))}
 
             <section className="banners">
                 <div className="container">
