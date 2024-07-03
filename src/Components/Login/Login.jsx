@@ -5,6 +5,7 @@ import sideBg from './sideBg.jpg';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import MetaTag from '../Meta/MetaTag';
 
 const Login = () => {
 
@@ -58,6 +59,11 @@ const Login = () => {
   return (
     <>
         <ToastContainer />
+        <MetaTag 
+        title="Login - SW Health Care Private Limited"
+        description="Log in to your account at SW Health Care Private Limited. Access your profile, view orders, and manage your healthcare product preferences."
+        keyword="login, SW Health Care login, user login, account login, healthcare login"
+      />
         <section className="my-3 login-page">
             <div className="container">
                 <div className="row login">

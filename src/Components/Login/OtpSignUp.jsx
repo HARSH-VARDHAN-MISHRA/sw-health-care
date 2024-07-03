@@ -5,6 +5,7 @@ import axios from 'axios';
 // import { ToastContainer, toast } from 'react-toastify';
 // import 'react-toastify/dist/ReactToastify.css';
 import toast from 'react-hot-toast';
+import MetaTag from '../Meta/MetaTag';
 
 const OtpSignUp = () => {
     const {email} = useParams()
@@ -100,6 +101,11 @@ const OtpSignUp = () => {
   return (
     <>
         {/* <ToastContainer /> */}
+        <MetaTag
+            title="OTP Sign In - SW Health Care Private Limited"
+            description="Sign in using OTP at SW Health Care Private Limited. Receive a one-time password on your registered mobile number for secure access."
+            keyword="OTP sign in, one-time password, secure login, SW Health Care OTP sign in"
+        />
             <section className='login-account login-page mt-5'>
                 <div className="container">
                     <div className="row login">

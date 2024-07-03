@@ -5,6 +5,7 @@ import sideBg from './sideBg.jpg'
 import axios from 'axios'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import MetaTag from '../Meta/MetaTag';
 
 const ForgetPassword = () => {
     const [loading, setLoading] = useState(false);
@@ -88,6 +89,12 @@ const ForgetPassword = () => {
     return (
         <>
         <ToastContainer/>
+        <MetaTag
+            title="Forgot Password - SW Health Care Private Limited"
+            description="Recover your password at SW Health Care Private Limited. Follow the steps to reset your account password securely."
+            keyword="forgot password, password recovery, reset password, SW Health Care forgot password"
+        />
+
             <section className="my-3 login-page">
                 <div className="container">
                     <div className="row login">
