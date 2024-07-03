@@ -9,6 +9,7 @@ import MostSelling from '../../Components/MostSelling/MostSelling'
 import About from '../../Components/About/About'
 // import Payment from '../../Components/Payment/Payment'
 import Testimonial from '../../Components/Testimonial/Testimonial'
+import Faq from '../../Components/Faq/Faq'
 
 const HomePage = () => {
 
@@ -112,13 +113,15 @@ const HomePage = () => {
                     <div className="row">
                         {allShopBanner && allShopBanner.map((shopBan,indexNum)=>(
                             <div className="col-md-6 p-2" key={indexNum}>
-                                <Link to="/shop"><img src={shopBan.saleBannerImage} alt={shopBan.saleBannerTitle} /></Link>
+                                <Link to="/categories"><img src={shopBan.saleBannerImage} alt={shopBan.saleBannerTitle} /></Link>
                             </div>
 
                         ))}
                     </div>
                 </div>
             </section>
+
+            <Faq/>
 
             <Testimonial/>
             {/* <Payment /> */}

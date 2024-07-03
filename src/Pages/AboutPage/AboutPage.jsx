@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import aboutImg from '../../Assets/about.webp'
 import { Link } from 'react-router-dom'
+import Faq from '../../Components/Faq/Faq';
 
 const AboutPage = () => {
   useEffect(() => {
@@ -37,6 +38,8 @@ const AboutPage = () => {
           </div>
         </div>
       </section>
+
+      <Faq/>
     </>
   )
 }
