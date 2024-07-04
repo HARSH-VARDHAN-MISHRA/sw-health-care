@@ -9,8 +9,6 @@ const Header = () => {
     const [sidebar, setSidebar] = useState(false)
     const [fixedHeader, setFixedHeader] = useState(false);
 
-
-
     const handleOpenBar = () => {
         setSidebar(true)
     }
@@ -89,7 +87,7 @@ const Header = () => {
         <>
             <header className={fixedHeader ? 'fixed-top' : ''}>
                 <div className="header-top text-center">
-                    <p>WELCOME TO CAMRO - SW Health Care</p>
+                    <p>WELCOME TO  SW Health Care</p>
                 </div>
 
                 <div className="header-navbar">
