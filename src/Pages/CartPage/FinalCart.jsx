@@ -75,7 +75,7 @@ const FinalCart = () => {
 
     const handlePaySubmit = async () => {
         try {
-            const response = await axios.post('https://sw-health-care-backend.onrender.com/api/v2/payment-create', {
+            const response = await axios.post('https://api.swhealthcares.com/api/v2/payment-create', {
                 amount: Order.finalPrice,
             }, {
                 headers: {
@@ -102,7 +102,7 @@ const FinalCart = () => {
             await handlePaySubmit();
 
             try {
-                const response = await axios.post('https://sw-health-care-backend.onrender.com/api/v1/create-order', Order, {
+                const response = await axios.post('https://api.swhealthcares.com/api/v1/create-order', Order, {
                     headers: {
                         Authorization: `Bearer ${token}`,
                     },
@@ -118,7 +118,7 @@ const FinalCart = () => {
         } else {
             console.log(Order)
             try {
-                const response = await axios.post('https://sw-health-care-backend.onrender.com/api/v1/create-order', Order, {
+                const response = await axios.post('https://api.swhealthcares.com/api/v1/create-order', Order, {
                     headers: {
                         Authorization: `Bearer ${token}`,
                     },

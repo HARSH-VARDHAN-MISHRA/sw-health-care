@@ -13,7 +13,7 @@ const OrderConfirm = () => {
     useEffect(() => {
         const fetchLatestOrder = async () => {
             try {
-                const response = await axios.get(`https://sw-health-care-backend.onrender.com/api/v1/get-my-latest-order/${id}`, {
+                const response = await axios.get(`https://api.swhealthcares.com/api/v1/get-my-latest-order/${id}`, {
                     headers: {
                         Authorization: `Bearer ${swToken}`,
                     },

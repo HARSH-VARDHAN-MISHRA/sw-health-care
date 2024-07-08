@@ -67,7 +67,7 @@ const CartPage = () => {
 
     const applyCoupon = async () => {
         try {
-            const res = await axios.post('https://sw-health-care-backend.onrender.com/api/v1/apply-vouchers', formData);
+            const res = await axios.post('https://api.swhealthcares.com/api/v1/apply-vouchers', formData);
             const RoundTotal = Math.round(res.data.data.discountedTotal);
             setLastprice(RoundTotal);
             setDiscount(calculateSubtotal() - RoundTotal);
