@@ -123,13 +123,13 @@ const FinalCart = () => {
                         Authorization: `Bearer ${token}`,
                     },
                 });
-
+                const data = response.data.data
                 console.log('Order creation response:', response.data);
                 // sessionStorage.setItem('orderData', JSON.stringify(Order));
                 toast.success("Order Placed Successfully !!")
 
                 setTimeout(() => {
-                    navigate('/order-confirmed')
+                    navigate(`/order-confirmed?id=${data._id}`)
                     localStorage.removeItem('swcart');
                     localStorage.removeItem('swSubtotal');
                     localStorage.removeItem('swFinalPrice');
@@ -215,7 +215,7 @@ const FinalCart = () => {
                                     <select onChange={handleChange} value={Order.PaymentMode} name="PaymentMode" className="form-control">
                                         <option value="">Select Payment Method</option>
                                         <option value="COD">COD</option>
-                                        <option value="Online">Online</option>
+                                        <option value="Online" disabled>Online</option>
                                     </select>
                                 </div>
 

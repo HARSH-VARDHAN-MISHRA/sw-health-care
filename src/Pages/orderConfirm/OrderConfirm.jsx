@@ -5,12 +5,15 @@ import './OrderConfirm.css';
 
 const OrderConfirm = () => {
     const [latestOrder, setLatestOrder] = useState(null);
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get('id');
     const swToken = localStorage.getItem('swToken');
-
+    const swUser = JSON.parse(localStorage.getItem('swUser'));
+        console.log(swUser);
     useEffect(() => {
         const fetchLatestOrder = async () => {
             try {
-                const response = await axios.get('https://sw-health-care-backend.onrender.com/api/v1/get-my-latest-order', {
+                const response = await axios.get(`https://sw-health-care-backend.onrender.com/api/v1/get-my-latest-order/${id}`, {
                     headers: {
                         Authorization: `Bearer ${swToken}`,
                     },
